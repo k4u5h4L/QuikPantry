@@ -5,6 +5,15 @@
 /.pnp
 .pnp.js
 
+# custom
+temp/
+dist/
+build/
+
+# pwa stuff
+public/sw.js
+public/workbox-a8b10d99.js
+
 # testing
 /coverage
 
@@ -25,6 +34,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
 .env.local
 .env.development.local
 .env.test.local
