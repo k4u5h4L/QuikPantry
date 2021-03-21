@@ -1,6 +1,52 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+
+import { ProductType } from "@/types/index";
+import { CartContext } from "@/utils/CartContext";
 
 export default function CheckoutPage() {
+    const [cartItems, setCartItems] = useState<ProductType[]>([]);
+
+    const { value, setValue } = useContext(CartContext);
+
+    const router = useRouter();
+
+    const placeOrder = () => {
+        setValue(0);
+        setCartItems([]);
+        localStorage.setItem("cart", "[]");
+        router.push(`/`);
+    };
+
+    useEffect(() => {
+        const getCartItems = async () => {
+            if (localStorage.getItem("cart")) {
+                try {
+                    const res = await fetch(`/api/cart/items`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(localStorage.getItem("cart")),
+                    });
+
+                    const data: ProductType[] = await res.json();
+
+                    console.log(data);
+                    setCartItems(data);
+                } catch (err: any) {
+                    console.error("Error in fetching products");
+                    setCartItems([]);
+                }
+            } else {
+                setCartItems([]);
+            }
+        };
+
+        getCartItems();
+    }, []);
+
     return (
         <section className="checkout-area ptb-100">
             <div className="container">
@@ -9,8 +55,10 @@ export default function CheckoutPage() {
                         <div className="user-actions">
                             <i className="bx bx-link-external"></i>
                             <span>
-                                Returning customer?
-                                <a href="login.html">Click here to login</a>
+                                Returning customer?{" "}
+                                <Link href="/login">
+                                    <a>Click here to login</a>
+                                </Link>
                             </span>
                         </div>
                     </div>
@@ -166,7 +214,7 @@ export default function CheckoutPage() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-lg-12 col-md-12">
+                                    {/* <div className="col-lg-12 col-md-12">
                                         <div className="form-check">
                                             <input
                                                 type="checkbox"
@@ -180,8 +228,8 @@ export default function CheckoutPage() {
                                                 Create an account?
                                             </label>
                                         </div>
-                                    </div>
-                                    <div className="col-lg-12 col-md-12">
+                                    </div> */}
+                                    {/* <div className="col-lg-12 col-md-12">
                                         <div className="form-check">
                                             <input
                                                 type="checkbox"
@@ -195,7 +243,7 @@ export default function CheckoutPage() {
                                                 Ship to a different address?
                                             </label>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className="col-lg-12 col-md-12">
                                         <div className="form-group">
                                             <textarea
@@ -347,7 +395,11 @@ export default function CheckoutPage() {
                                             </label>
                                         </p>
                                     </div>
-                                    <a href="#" className="default-btn">
+                                    <a
+                                        onClick={() => placeOrder()}
+                                        style={{ cursor: "pointer" }}
+                                        className="default-btn"
+                                    >
                                         Place Order
                                     </a>
                                 </div>

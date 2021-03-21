@@ -63,36 +63,37 @@ export default function CartItems() {
                                             <th scope="col">Total</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        {cartItems.map(
-                                            (
-                                                item: ProductType,
-                                                index: number
-                                            ) => (
-                                                <tr key={index}>
-                                                    <td className="product-thumbnail">
-                                                        <a href="#">
-                                                            <Image
-                                                                src={
-                                                                    item.imageUrl
-                                                                }
-                                                                alt="item"
-                                                                width={80}
-                                                                height={80}
-                                                            />
-                                                        </a>
-                                                    </td>
-                                                    <td className="product-name">
-                                                        <a href="shop-details.html">
-                                                            {item.name}
-                                                        </a>
-                                                    </td>
-                                                    <td className="product-price">
-                                                        <span className="unit-amount">
-                                                            ${item.price}
-                                                        </span>
-                                                    </td>
-                                                    {/* <td className="product-quantity">
+                                    {cartItems.length != 0 ? (
+                                        <tbody>
+                                            {cartItems.map(
+                                                (
+                                                    item: ProductType,
+                                                    index: number
+                                                ) => (
+                                                    <tr key={index}>
+                                                        <td className="product-thumbnail">
+                                                            <a href="#">
+                                                                <Image
+                                                                    src={
+                                                                        item.imageUrl
+                                                                    }
+                                                                    alt="item"
+                                                                    width={80}
+                                                                    height={80}
+                                                                />
+                                                            </a>
+                                                        </td>
+                                                        <td className="product-name">
+                                                            <a href="shop-details.html">
+                                                                {item.name}
+                                                            </a>
+                                                        </td>
+                                                        <td className="product-price">
+                                                            <span className="unit-amount">
+                                                                ${item.price}
+                                                            </span>
+                                                        </td>
+                                                        {/* <td className="product-quantity">
                                                 <div className="input-counter">
                                                     <span className="minus-btn">
                                                         <i className="bx bx-minus"></i>
@@ -106,30 +107,37 @@ export default function CartItems() {
                                                     </span>
                                                 </div>
                                             </td> */}
-                                                    <td className="product-subtotal">
-                                                        <span className="subtotal-amount">
-                                                            ${item.price}
-                                                        </span>
-                                                        <a
-                                                            // href="#"
-                                                            style={{
-                                                                cursor:
-                                                                    "pointer",
-                                                            }}
-                                                            className="remove"
-                                                            onClick={() =>
-                                                                deleteItemFromCart(
-                                                                    item._id
-                                                                )
-                                                            }
-                                                        >
-                                                            <i className="bx bx-trash"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            )
-                                        )}
-                                    </tbody>
+                                                        <td className="product-subtotal">
+                                                            <span className="subtotal-amount">
+                                                                ${item.price}
+                                                            </span>
+                                                            <a
+                                                                // href="#"
+                                                                style={{
+                                                                    cursor:
+                                                                        "pointer",
+                                                                }}
+                                                                className="remove"
+                                                                onClick={() =>
+                                                                    deleteItemFromCart(
+                                                                        item._id
+                                                                    )
+                                                                }
+                                                            >
+                                                                <i className="bx bx-trash"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            )}
+                                        </tbody>
+                                    ) : (
+                                        <tbody>
+                                            <h4 className="d-flex justify-content-center">
+                                                No Items in the cart yet
+                                            </h4>
+                                        </tbody>
+                                    )}
                                 </table>
                             </div>
                             <div className="cart-buttons">
@@ -156,15 +164,18 @@ export default function CartItems() {
                                         Subtotal
                                         <span>
                                             $
-                                            {cartItems
-                                                .reduce(
-                                                    (
-                                                        total: number,
-                                                        cur: ProductType
-                                                    ) => total + cur.price,
-                                                    0
-                                                )
-                                                .toFixed(2)}
+                                            {cartItems.length != 0
+                                                ? cartItems
+                                                      .reduce(
+                                                          (
+                                                              total: number,
+                                                              cur: ProductType
+                                                          ) =>
+                                                              total + cur.price,
+                                                          0
+                                                      )
+                                                      .toFixed(2)
+                                                : (0.0).toFixed(2)}
                                         </span>
                                     </li>
                                     <li>
@@ -176,24 +187,30 @@ export default function CartItems() {
                                         <span>
                                             <b>
                                                 $
-                                                {(
-                                                    cartItems.reduce(
-                                                        (
-                                                            total: number,
-                                                            cur: ProductType
-                                                        ) => total + cur.price,
-                                                        0
-                                                    ) + 20
-                                                ).toFixed(2)}
+                                                {cartItems.length != 0
+                                                    ? (
+                                                          cartItems.reduce(
+                                                              (
+                                                                  total: number,
+                                                                  cur: ProductType
+                                                              ) =>
+                                                                  total +
+                                                                  cur.price,
+                                                              0
+                                                          ) + 20
+                                                      ).toFixed(2)
+                                                    : (0.0).toFixed(2)}
                                             </b>
                                         </span>
                                     </li>
                                 </ul>
-                                <Link href="/checkout">
-                                    <a className="default-btn">
-                                        Proceed to Checkout
-                                    </a>
-                                </Link>
+                                {cartItems.length != 0 ? (
+                                    <Link href="/checkout">
+                                        <a className="default-btn">
+                                            Proceed to Checkout
+                                        </a>
+                                    </Link>
+                                ) : null}
                             </div>
                         </form>
                     </div>
