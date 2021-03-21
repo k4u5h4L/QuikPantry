@@ -1,6 +1,9 @@
 import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ProductType } from "@/types/index";
 
-export default function Details() {
+export default function Details({ product, relatedProducts }) {
     return (
         <section className="product-details-area pt-100 pb-70">
             <div className="container">
@@ -8,31 +11,43 @@ export default function Details() {
                     <div className="col-lg-8">
                         <div className="row">
                             <div className="col-lg-6 col-md-12">
-                                <div className="product-details-image"></div>
+                                {/* <div className="product-details-image"> */}
+                                <Image
+                                    src={product.imageUrl}
+                                    width={650}
+                                    height={650}
+                                />
+                                {/* </div> */}
                             </div>
 
                             <div className="col-lg-6 col-md-12">
                                 <div className="product-details-desc">
-                                    <h3>Seasoned Tomatoes</h3>
+                                    <h3>{product.name}</h3>
                                     <div className="price">
                                         <span className="new-price">
-                                            $541.00
+                                            ${product.price}
                                         </span>
                                         <span className="old-price">
-                                            $652.00
+                                            ${product.oldProce}
                                         </span>
                                     </div>
                                     <div className="product-review">
                                         <div className="rating">
-                                            <i className="bx bxs-star"></i>
-                                            <i className="bx bxs-star"></i>
-                                            <i className="bx bxs-star"></i>
-                                            <i className="bx bxs-star"></i>
-                                            <i className="bx bxs-star"></i>
+                                            {[...Array(product.rating)].map(
+                                                (
+                                                    rating: number,
+                                                    index: number
+                                                ) => (
+                                                    <i
+                                                        key={index}
+                                                        className="bx bxs-star"
+                                                    ></i>
+                                                )
+                                            )}
                                         </div>
-                                        <a href="#" className="rating-count">
+                                        {/* <a href="#" className="rating-count">
                                             3 reviews
-                                        </a>
+                                        </a> */}
                                     </div>
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur
@@ -60,7 +75,7 @@ export default function Details() {
                                             </span>
                                         </div>
                                         <button
-                                            type="submit"
+                                            type="button"
                                             className="default-btn"
                                         >
                                             Add to cart
@@ -68,7 +83,7 @@ export default function Details() {
                                         </button>
                                     </div>
 
-                                    <div className="buy-checkbox-btn">
+                                    {/* <div className="buy-checkbox-btn">
                                         <div className="item">
                                             <input
                                                 className="inp-cbx"
@@ -102,9 +117,9 @@ export default function Details() {
                                                 Buy it now!
                                             </a>
                                         </div>
-                                    </div>
+                                    </div> */}
 
-                                    <div className="products-share">
+                                    {/* <div className="products-share">
                                         <ul className="social">
                                             <li>
                                                 <span>Share:</span>
@@ -146,7 +161,7 @@ export default function Details() {
                                                 </a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -161,42 +176,23 @@ export default function Details() {
                                                 Description
                                             </a>
                                         </li>
-                                        <li>
+                                        {/* <li>
                                             <a href="#">
                                                 <div className="dot"></div>
                                                 Reviews
                                             </a>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </div>
                                 <div className="col-lg-12 col-md-12">
                                     <div className="tab_content">
                                         <div className="tabs_item">
                                             <div className="products-details-tab-content">
-                                                <p>
-                                                    Lorem ipsum dolor sit amet,
-                                                    consectetur adipisicing
-                                                    elit, sed do eiusmod tempor
-                                                    incididunt ut labore et
-                                                    dolore magna aliqua. Ut enim
-                                                    ad minim veniam quis nostrud
-                                                    exercitation ullamco laboris
-                                                    nisi ut aliquip ex ea
-                                                    commodo consequat. Duis aute
-                                                    irure dolor in reprehenderit
-                                                    in voluptate velit esse
-                                                    fugiat nulla pariatur.
-                                                    Excepteur sint occaecat
-                                                    cupidatat non proident sunt
-                                                    in culpa qui officia
-                                                    deserunt mollit anim id est
-                                                    laborum. Sed ut perspiciatis
-                                                    unde omnis iste.
-                                                </p>
+                                                <p>{product.desc}</p>
                                             </div>
                                         </div>
 
-                                        <div className="tabs_item">
+                                        {/* <div className="tabs_item">
                                             <div className="products-details-tab-content">
                                                 <div className="product-review-form">
                                                     <h3>Customer Reviews</h3>
@@ -410,7 +406,7 @@ export default function Details() {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
@@ -419,17 +415,30 @@ export default function Details() {
                         <div className="related-shop">
                             <h4>Related Products</h4>
                             <div className="row">
-                                <div className="col-lg-6 col-md-6">
-                                    <div className="top-products-item">
-                                        <div className="products-image">
-                                            <a href="shop-details.html">
-                                                <img
-                                                    src="/assets/img/top-products/top-products-1.jpg"
-                                                    alt="image"
-                                                />
-                                            </a>
+                                {relatedProducts.map(
+                                    (prod: ProductType, index: number) => (
+                                        <div
+                                            className="col-lg-6 col-md-6"
+                                            key={index}
+                                        >
+                                            <div className="top-products-item">
+                                                <div className="products-image">
+                                                    <Link
+                                                        href={`/product/${prod._id}`}
+                                                    >
+                                                        <a>
+                                                            <Image
+                                                                src={
+                                                                    prod.imageUrl
+                                                                }
+                                                                alt="image"
+                                                                width={650}
+                                                                height={650}
+                                                            />
+                                                        </a>
+                                                    </Link>
 
-                                            <ul className="products-action">
+                                                    {/* <ul className="products-action">
                                                 <li>
                                                     <a
                                                         href="cart.html"
@@ -462,277 +471,62 @@ export default function Details() {
                                                         <i className="flaticon-search"></i>
                                                     </a>
                                                 </li>
-                                            </ul>
+                                            </ul> */}
 
-                                            <div className="sale">
-                                                <span>Sale</span>
+                                                    <div className="sale">
+                                                        <span>Sale</span>
+                                                    </div>
+                                                </div>
+
+                                                <div className="products-content">
+                                                    <h3>
+                                                        <Link
+                                                            href={`/product/${prod._id}`}
+                                                        >
+                                                            <a>{prod.name}</a>
+                                                        </Link>
+                                                    </h3>
+                                                    <div className="price">
+                                                        <span className="new-price">
+                                                            ${prod.price}
+                                                        </span>
+                                                        <span className="old-price">
+                                                            ${prod.oldPrice}
+                                                        </span>
+                                                    </div>
+                                                    <ul className="rating">
+                                                        <li>
+                                                            {[
+                                                                ...Array(
+                                                                    prod.rating
+                                                                ),
+                                                            ].map(
+                                                                (
+                                                                    rating: number,
+                                                                    index: number
+                                                                ) => (
+                                                                    <i
+                                                                        key={
+                                                                            index
+                                                                        }
+                                                                        className="bx bxs-star"
+                                                                    ></i>
+                                                                )
+                                                            )}
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-
-                                        <div className="products-content">
-                                            <h3>
-                                                <a href="shop-details.html">
-                                                    Darling Oranges
-                                                </a>
-                                            </h3>
-                                            <div className="price">
-                                                <span className="new-price">
-                                                    $38.00
-                                                </span>
-                                                <span className="old-price">
-                                                    $125.00
-                                                </span>
-                                            </div>
-                                            <ul className="rating">
-                                                <li>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bx-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-lg-6 col-md-6">
-                                    <div className="top-products-item">
-                                        <div className="products-image">
-                                            <a href="shop-details.html">
-                                                <img
-                                                    src="/assets/img/top-products/top-products-2.jpg"
-                                                    alt="image"
-                                                />
-                                            </a>
-
-                                            <ul className="products-action">
-                                                <li>
-                                                    <a
-                                                        href="cart.html"
-                                                        data-tooltip="tooltip"
-                                                        data-placement="top"
-                                                        title="Add to Cart"
-                                                    >
-                                                        <i className="flaticon-shopping-cart"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        href="#"
-                                                        data-tooltip="tooltip"
-                                                        data-placement="top"
-                                                        title="Add to Wishlist"
-                                                    >
-                                                        <i className="flaticon-heart"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        href="#"
-                                                        data-tooltip="tooltip"
-                                                        data-placement="top"
-                                                        title="Quick View"
-                                                        data-toggle="modal"
-                                                        data-target="#productsQuickView"
-                                                    >
-                                                        <i className="flaticon-search"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-
-                                            <div className="sale">
-                                                <span>Sale</span>
-                                            </div>
-                                        </div>
-
-                                        <div className="products-content">
-                                            <h3>
-                                                <a href="shop-details.html">
-                                                    Strawberry
-                                                </a>
-                                            </h3>
-                                            <div className="price">
-                                                <span className="new-price">
-                                                    $30.00
-                                                </span>
-                                                <span className="old-price">
-                                                    $116.00
-                                                </span>
-                                            </div>
-                                            <ul className="rating">
-                                                <li>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bx-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-lg-6 col-md-6">
-                                    <div className="top-products-item">
-                                        <div className="products-image">
-                                            <a href="shop-details.html">
-                                                <img
-                                                    src="/assets/img/top-products/top-products-3.jpg"
-                                                    alt="image"
-                                                />
-                                            </a>
-
-                                            <ul className="products-action">
-                                                <li>
-                                                    <a
-                                                        href="cart.html"
-                                                        data-tooltip="tooltip"
-                                                        data-placement="top"
-                                                        title="Add to Cart"
-                                                    >
-                                                        <i className="flaticon-shopping-cart"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        href="#"
-                                                        data-tooltip="tooltip"
-                                                        data-placement="top"
-                                                        title="Add to Wishlist"
-                                                    >
-                                                        <i className="flaticon-heart"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        href="#"
-                                                        data-tooltip="tooltip"
-                                                        data-placement="top"
-                                                        title="Quick View"
-                                                        data-toggle="modal"
-                                                        data-target="#productsQuickView"
-                                                    >
-                                                        <i className="flaticon-search"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-
-                                            <div className="sale">
-                                                <span>Sale</span>
-                                            </div>
-                                        </div>
-
-                                        <div className="products-content">
-                                            <h3>
-                                                <a href="shop-details.html">
-                                                    Cabbage
-                                                </a>
-                                            </h3>
-                                            <div className="price">
-                                                <span className="new-price">
-                                                    $40.00
-                                                </span>
-                                                <span className="old-price">
-                                                    $179.00
-                                                </span>
-                                            </div>
-                                            <ul className="rating">
-                                                <li>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bx-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-lg-6 col-md-6">
-                                    <div className="top-products-item">
-                                        <div className="products-image">
-                                            <a href="shop-details.html">
-                                                <img
-                                                    src="/assets/img/top-products/top-products-4.jpg"
-                                                    alt="image"
-                                                />
-                                            </a>
-
-                                            <ul className="products-action">
-                                                <li>
-                                                    <a
-                                                        href="cart.html"
-                                                        data-tooltip="tooltip"
-                                                        data-placement="top"
-                                                        title="Add to Cart"
-                                                    >
-                                                        <i className="flaticon-shopping-cart"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        href="#"
-                                                        data-tooltip="tooltip"
-                                                        data-placement="top"
-                                                        title="Add to Wishlist"
-                                                    >
-                                                        <i className="flaticon-heart"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        href="#"
-                                                        data-tooltip="tooltip"
-                                                        data-placement="top"
-                                                        title="Quick View"
-                                                        data-toggle="modal"
-                                                        data-target="#productsQuickView"
-                                                    >
-                                                        <i className="flaticon-search"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-
-                                            <div className="sale">
-                                                <span>Sale</span>
-                                            </div>
-                                        </div>
-
-                                        <div className="products-content">
-                                            <h3>
-                                                <a href="shop-details.html">
-                                                    Nectarine
-                                                </a>
-                                            </h3>
-                                            <div className="price">
-                                                <span className="new-price">
-                                                    $45.00
-                                                </span>
-                                                <span className="old-price">
-                                                    $135.00
-                                                </span>
-                                            </div>
-                                            <ul className="rating">
-                                                <li>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bxs-star"></i>
-                                                    <i className="bx bx-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                    )
+                                )}
                             </div>
                         </div>
                     </div>
 
                     <div className="col-lg-4 col-md-12">
                         <aside className="widget-area">
-                            <section className="widget widget_search">
+                            {/* <section className="widget widget_search">
                                 <h3 className="widget-title">Search</h3>
 
                                 <form className="search-form">
@@ -750,7 +544,7 @@ export default function Details() {
                                         <i className="flaticon-search"></i>
                                     </button>
                                 </form>
-                            </section>
+                            </section> */}
 
                             <section className="widget price_list_widget">
                                 <h3 className="widget-title">Price</h3>
@@ -761,7 +555,7 @@ export default function Details() {
                                             type="text"
                                             className="form-control"
                                             // placeholder="$10"
-                                            value="$10"
+                                            value={`$${product.price}`}
                                             readOnly
                                         />
                                         {/* <span className="form-control">
@@ -853,19 +647,18 @@ export default function Details() {
                             </section> */}
 
                             <section className="widget widget_tag_cloud">
-                                <h3 className="widget-title">Popular Tags</h3>
+                                <h3 className="widget-title">
+                                    Product categories
+                                </h3>
 
                                 <div className="tagcloud">
-                                    <a href="#">Architecture</a>
-                                    <a href="#">Interior Design</a>
-                                    <a href="#">Designing</a>
-                                    <a href="#">Construction</a>
-                                    <a href="#">Buildings</a>
-                                    <a href="#">Industrial Factory</a>
-                                    <a href="#">Material</a>
-                                    <a href="#">Organic</a>
-                                    <a href="#">Food</a>
-                                    <a href="#">Tasty</a>
+                                    {product.tags.map(
+                                        (tag: string, index: number) => (
+                                            <a href="#" key={index}>
+                                                {tag}
+                                            </a>
+                                        )
+                                    )}
                                 </div>
                             </section>
                         </aside>

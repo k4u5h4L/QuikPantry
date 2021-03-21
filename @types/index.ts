@@ -2,9 +2,15 @@
 
 // type Id = string;
 
-export interface Item {
+export interface ProductType {
     [key: string]: any;
+    // [_id: string]: any;
     name: string;
     desc: string;
+    oldPrice: number;
     price: number;
+    rating: number;
+    imageUrl: string;
+    stock: boolean;
+    tags: [string];
 }

@@ -20,6 +20,7 @@
             "@/types/*": ["@types/*"],
             "@/utils/*": ["utils/*"],
             "@/models/*": ["models/*"],
+            "@/helpers/*": ["helpers/*"],
             "@/node_modules/*": ["node_modules/*"]
         }
     },
