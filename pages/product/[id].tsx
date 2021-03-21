@@ -1,5 +1,5 @@
 import React from "react";
-import { GetServerSideProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 import Navbar from "@/components/Home/Navbar/Navbar";
 import Sidebar from "@/components/Home/Sidebar/Sidebar";
@@ -10,7 +10,23 @@ import Product from "@/models/Product";
 import { ProductType } from "@/types/index";
 import { sendRegex } from "@/helpers/getRegex";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+    // Call an external API endpoint to get posts
+    await dbConnect();
+
+    const res = await Product.find({});
+
+    // Get the paths we want to pre-render based on posts
+    const paths = res.map((pdt: ProductType) => ({
+        params: { id: `${pdt._id}` },
+    }));
+
+    // We'll pre-render only these paths at build time.
+    // { fallback: false } means other routes should 404.
+    return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
     await dbConnect();
 
     const { id } = context.params;
