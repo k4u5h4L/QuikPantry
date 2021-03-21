@@ -8,7 +8,10 @@ export default function Error() {
                 <div className="d-table-cell">
                     <div className="container">
                         <div className="error-content">
-                            <img src="/assets/img/404-error.png" alt="error" />
+                            <img
+                                src="https://templates.envytheme.com/orgo/default/assets/img/404-error.png"
+                                alt="error"
+                            />
 
                             <h3>Error 404 : Page Not Found</h3>
                             <p>

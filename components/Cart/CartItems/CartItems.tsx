@@ -1,6 +1,51 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import Image from "next/image";
+import Link from "next/link";
+
+import { ProductType } from "@/types/index";
+import { CartContext } from "@/utils/CartContext";
 
 export default function CartItems() {
+    const [cartItems, setCartItems] = useState<ProductType[]>([]);
+
+    const { value, setValue } = useContext(CartContext);
+
+    const deleteItemFromCart = (id: string): void => {
+        setCartItems(cartItems.filter((value, index, arr) => value._id != id));
+        setValue(value - 1);
+        let pdts: string[] = JSON.parse(localStorage.getItem("cart")) || [];
+        pdts = pdts.filter((value, index, arr) => value != id);
+        localStorage.setItem("cart", JSON.stringify(pdts));
+    };
+
+    useEffect(() => {
+        const getCartItems = async () => {
+            if (localStorage.getItem("cart")) {
+                try {
+                    const res = await fetch(`/api/cart/items`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(localStorage.getItem("cart")),
+                    });
+
+                    const data: ProductType[] = await res.json();
+
+                    // console.log(data);
+                    setCartItems(data);
+                } catch (err: any) {
+                    console.error("Error in fetching products");
+                    setCartItems([]);
+                }
+            } else {
+                setCartItems([]);
+            }
+        };
+
+        getCartItems();
+    }, []);
+
     return (
         <section className="cart-area ptb-100">
             <div className="container">
@@ -14,31 +59,40 @@ export default function CartItems() {
                                             <th scope="col">Product</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Unit Price</th>
-                                            <th scope="col">Quantity</th>
+                                            {/* <th scope="col">Quantity</th> */}
                                             <th scope="col">Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td className="product-thumbnail">
-                                                <a href="#">
-                                                    <img
-                                                        src="assets/img/top-products/top-products-1.jpg"
-                                                        alt="item"
-                                                    />
-                                                </a>
-                                            </td>
-                                            <td className="product-name">
-                                                <a href="shop-details.html">
-                                                    Darling Oranges
-                                                </a>
-                                            </td>
-                                            <td className="product-price">
-                                                <span className="unit-amount">
-                                                    $455.00
-                                                </span>
-                                            </td>
-                                            <td className="product-quantity">
+                                        {cartItems.map(
+                                            (
+                                                item: ProductType,
+                                                index: number
+                                            ) => (
+                                                <tr key={index}>
+                                                    <td className="product-thumbnail">
+                                                        <a href="#">
+                                                            <Image
+                                                                src={
+                                                                    item.imageUrl
+                                                                }
+                                                                alt="item"
+                                                                width={80}
+                                                                height={80}
+                                                            />
+                                                        </a>
+                                                    </td>
+                                                    <td className="product-name">
+                                                        <a href="shop-details.html">
+                                                            {item.name}
+                                                        </a>
+                                                    </td>
+                                                    <td className="product-price">
+                                                        <span className="unit-amount">
+                                                            ${item.price}
+                                                        </span>
+                                                    </td>
+                                                    {/* <td className="product-quantity">
                                                 <div className="input-counter">
                                                     <span className="minus-btn">
                                                         <i className="bx bx-minus"></i>
@@ -51,160 +105,47 @@ export default function CartItems() {
                                                         <i className="bx bx-plus"></i>
                                                     </span>
                                                 </div>
-                                            </td>
-                                            <td className="product-subtotal">
-                                                <span className="subtotal-amount">
-                                                    $455.00
-                                                </span>
-                                                <a href="#" className="remove">
-                                                    <i className="bx bx-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className="product-thumbnail">
-                                                <a href="#">
-                                                    <img
-                                                        src="assets/img/top-products/top-products-2.jpg"
-                                                        alt="item"
-                                                    />
-                                                </a>
-                                            </td>
-                                            <td className="product-name">
-                                                <a href="shop-details.html">
-                                                    Strawberry
-                                                </a>
-                                            </td>
-                                            <td className="product-price">
-                                                <span className="unit-amount">
-                                                    $541.50
-                                                </span>
-                                            </td>
-                                            <td className="product-quantity">
-                                                <div className="input-counter">
-                                                    <span className="minus-btn">
-                                                        <i className="bx bx-minus"></i>
-                                                    </span>
-                                                    <input
-                                                        type="text"
-                                                        value="1"
-                                                    />
-                                                    <span className="plus-btn">
-                                                        <i className="bx bx-plus"></i>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td className="product-subtotal">
-                                                <span className="subtotal-amount">
-                                                    $541.50
-                                                </span>
-                                                <a href="#" className="remove">
-                                                    <i className="bx bx-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className="product-thumbnail">
-                                                <a href="#">
-                                                    <img
-                                                        src="assets/img/top-products/top-products-3.jpg"
-                                                        alt="item"
-                                                    />
-                                                </a>
-                                            </td>
-                                            <td className="product-name">
-                                                <a href="shop-details.html">
-                                                    Seasoned Tomatoes
-                                                </a>
-                                            </td>
-                                            <td className="product-price">
-                                                <span className="unit-amount">
-                                                    $140.50
-                                                </span>
-                                            </td>
-                                            <td className="product-quantity">
-                                                <div className="input-counter">
-                                                    <span className="minus-btn">
-                                                        <i className="bx bx-minus"></i>
-                                                    </span>
-                                                    <input
-                                                        type="text"
-                                                        value="1"
-                                                    />
-                                                    <span className="plus-btn">
-                                                        <i className="bx bx-plus"></i>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td className="product-subtotal">
-                                                <span className="subtotal-amount">
-                                                    $140.50
-                                                </span>
-                                                <a href="#" className="remove">
-                                                    <i className="bx bx-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className="product-thumbnail">
-                                                <a href="#">
-                                                    <img
-                                                        src="assets/img/top-products/top-products-4.jpg"
-                                                        alt="item"
-                                                    />
-                                                </a>
-                                            </td>
-                                            <td className="product-name">
-                                                <a href="shop-details.html">
-                                                    Seasoned Carrot
-                                                </a>
-                                            </td>
-                                            <td className="product-price">
-                                                <span className="unit-amount">
-                                                    $547.00
-                                                </span>
-                                            </td>
-                                            <td className="product-quantity">
-                                                <div className="input-counter">
-                                                    <span className="minus-btn">
-                                                        <i className="bx bx-minus"></i>
-                                                    </span>
-                                                    <input
-                                                        type="text"
-                                                        value="1"
-                                                    />
-                                                    <span className="plus-btn">
-                                                        <i className="bx bx-plus"></i>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td className="product-subtotal">
-                                                <span className="subtotal-amount">
-                                                    $547.00
-                                                </span>
-                                                <a href="#" className="remove">
-                                                    <i className="bx bx-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                            </td> */}
+                                                    <td className="product-subtotal">
+                                                        <span className="subtotal-amount">
+                                                            ${item.price}
+                                                        </span>
+                                                        <a
+                                                            // href="#"
+                                                            style={{
+                                                                cursor:
+                                                                    "pointer",
+                                                            }}
+                                                            className="remove"
+                                                            onClick={() =>
+                                                                deleteItemFromCart(
+                                                                    item._id
+                                                                )
+                                                            }
+                                                        >
+                                                            <i className="bx bx-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        )}
                                     </tbody>
                                 </table>
                             </div>
                             <div className="cart-buttons">
                                 <div className="row align-items-center">
                                     <div className="col-lg-7 col-sm-7 col-md-7">
-                                        <a
-                                            href="shop-1.html"
-                                            className="default-btn"
-                                        >
-                                            Back to Shop
-                                        </a>
+                                        <Link href="/shop">
+                                            <a className="default-btn">
+                                                Back to Shop
+                                            </a>
+                                        </Link>
                                     </div>
-                                    <div className="col-lg-5 col-sm-5 col-md-5 text-right">
+                                    {/* <div className="col-lg-5 col-sm-5 col-md-5 text-right">
                                         <a href="#" className="default-btn">
                                             Update Cart
                                         </a>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
 
@@ -213,22 +154,46 @@ export default function CartItems() {
                                 <ul>
                                     <li>
                                         Subtotal
-                                        <span>$1683.50</span>
+                                        <span>
+                                            $
+                                            {cartItems
+                                                .reduce(
+                                                    (
+                                                        total: number,
+                                                        cur: ProductType
+                                                    ) => total + cur.price,
+                                                    0
+                                                )
+                                                .toFixed(2)}
+                                        </span>
                                     </li>
                                     <li>
                                         Shipping
-                                        <span>$30.00</span>
+                                        <span>$20.00</span>
                                     </li>
                                     <li>
                                         Total
                                         <span>
-                                            <b>$1713.50</b>
+                                            <b>
+                                                $
+                                                {(
+                                                    cartItems.reduce(
+                                                        (
+                                                            total: number,
+                                                            cur: ProductType
+                                                        ) => total + cur.price,
+                                                        0
+                                                    ) + 20
+                                                ).toFixed(2)}
+                                            </b>
                                         </span>
                                     </li>
                                 </ul>
-                                <a href="#" className="default-btn">
-                                    Proceed to Checkout
-                                </a>
+                                <Link href="/checkout">
+                                    <a className="default-btn">
+                                        Proceed to Checkout
+                                    </a>
+                                </Link>
                             </div>
                         </form>
                     </div>

@@ -1,0 +1,64 @@
+[{
+  "_id": {
+    "$oid": "605715d0dc9f126486088476"
+  },
+  "tags": [
+    "tomato",
+    "fruit"
+  ],
+  "name": "Seasoned Tomatoes",
+  "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
+  "oldPrice": 652,
+  "price": 540,
+  "rating": 4,
+  "imageUrl": "https://templates.envytheme.com/orgo/default/assets/img/top-products/top-products-7.jpg",
+  "stock": true
+},{
+  "_id": {
+    "$oid": "6057360650d51052c355cddf"
+  },
+  "tags": [
+    "potato",
+    "chips",
+    "snack"
+  ],
+  "name": "Potato Chips",
+  "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
+  "oldPrice": 56,
+  "price": 43,
+  "rating": 5,
+  "imageUrl": "https://i1.wp.com/www.eatthis.com/wp-content/uploads/2018/09/bowl-potato-chips.jpg?fit=1024%2C750&ssl=1",
+  "stock": true
+},{
+  "_id": {
+    "$oid": "6057369850d51052c355cde1"
+  },
+  "tags": [
+    "beans",
+    "jelly",
+    "snack"
+  ],
+  "name": "Jellybeans",
+  "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
+  "oldPrice": 96,
+  "price": 73,
+  "rating": 5,
+  "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61OSYMDGSxL._SL1024_.jpg",
+  "stock": true
+},{
+  "_id": {
+    "$oid": "605736fb50d51052c355cde2"
+  },
+  "tags": [
+    "fruit",
+    "green",
+    "sweet"
+  ],
+  "name": "Kiwi Fruit",
+  "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
+  "oldPrice": 106,
+  "price": 78,
+  "rating": 5,
+  "imageUrl": "https://cdn-prod.medicalnewstoday.com/content/images/articles/271/271232/chopped-kiwi-in-a-bowl-on-a-table.jpg",
+  "stock": true
+}]

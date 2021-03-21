@@ -1,13 +1,17 @@
 import React from "react";
 import { GetStaticProps } from "next";
 
-import Navbar from "@/components/Home/Navbar/Navbar";
+// import Navbar from "@/components/Home/Navbar/Navbar";
+import dynamic from "next/dynamic";
+const Navbar = dynamic(() => import("@/components/Home/Navbar/Navbar"), {
+    ssr: false,
+});
 import Sidebar from "@/components/Home/Sidebar/Sidebar";
 import Banner from "@/components/Shop/Banner/Banner";
 import Products from "@/components/Shop/Products/Products/Products";
 import Footer from "@/components/Home/Footer/Footer";
 import GoToTop from "@/components/GoToTop";
-import QuickView from "@/components/Home/QuickView/QuickView";
+// import QuickView from "@/components/Home/QuickView/QuickView";
 import dbConnect from "@/utils/dbConnect";
 import Product from "@/models/Product";
 
@@ -35,7 +39,7 @@ export default function ShopIndex({ pdts }) {
             <Products products={JSON.parse(pdts)} />
             <Footer />
             <GoToTop />
-            <QuickView />
+            {/* <QuickView /> */}
         </>
     );
 }

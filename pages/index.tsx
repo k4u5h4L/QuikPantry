@@ -1,14 +1,18 @@
 import React from "react";
 import { GetStaticProps } from "next";
+import dynamic from "next/dynamic";
 
 import dbConnect from "@/utils/dbConnect";
-import Navbar from "@/components/Home/Navbar/Navbar";
+const Navbar = dynamic(() => import("@/components/Home/Navbar/Navbar"), {
+    ssr: false,
+});
+// import Navbar from "@/components/Home/Navbar/Navbar";
 import Sidebar from "@/components/Home/Sidebar/Sidebar";
 import Banner from "@/components/Home/Banner/Banner";
 import Featured from "@/components/Home/Featured/Featured";
 import WhyUs from "@/components/Home/WhyUs/WhyUs";
 import Footer from "@/components/Home/Footer/Footer";
-import QuickView from "@/components/Home/QuickView/QuickView";
+// import QuickView from "@/components/Home/QuickView/QuickView";
 import GoToTop from "@/components/GoToTop";
 import Product from "@/models/Product";
 import { ProductType } from "@/types/index";
@@ -49,7 +53,7 @@ const Index = ({ products }) => (
         <WhyUs />
         <Footer />
         <GoToTop />
-        <QuickView />
+        {/* <QuickView /> */}
     </>
 );
 

@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Head from "next/head";
 import { Provider } from "next-auth/client";
 import type { AppProps /*, AppContext */ } from "next/app";
 
 import NextNprogress from "nextjs-progressbar";
+import { CartContext } from "@/utils/CartContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
+    const [value, setValue] = useState<number>(0);
+
     return (
         <Provider session={pageProps.session}>
             <Head>
@@ -29,13 +32,15 @@ function MyApp({ Component, pageProps }: AppProps) {
                 />
                 <title>QuikPantry</title>
             </Head>
-            <NextNprogress
-                color="#f99459"
-                startPosition={0.3}
-                stopDelayMs={200}
-                height={3}
-            />
-            <Component {...pageProps} />
+            <CartContext.Provider value={{ value, setValue }}>
+                <NextNprogress
+                    color="#f99459"
+                    startPosition={0.3}
+                    stopDelayMs={200}
+                    height={3}
+                />
+                <Component {...pageProps} />
+            </CartContext.Provider>
         </Provider>
     );
 }

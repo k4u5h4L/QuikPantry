@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ProductType } from "@/types/index";
+import { CartContext } from "@/utils/CartContext";
 
 export default function Details({ product, relatedProducts }) {
+    const { value, setValue } = useContext(CartContext);
+
+    const addToCart = (): void => {
+        const itemId = `${product._id}`;
+        let pdts: string[] = JSON.parse(localStorage.getItem("cart")) || [];
+
+        if (!pdts.includes(itemId)) {
+            pdts.push(itemId);
+        }
+        localStorage.setItem("cart", JSON.stringify(pdts));
+        setValue(pdts.length);
+    };
     return (
         <section className="product-details-area pt-100 pb-70">
             <div className="container">
@@ -25,10 +38,11 @@ export default function Details({ product, relatedProducts }) {
                                     <h3>{product.name}</h3>
                                     <div className="price">
                                         <span className="new-price">
-                                            ${product.price}
+                                            ${product.price.toFixed(2)}
                                         </span>
+                                        <span> </span>
                                         <span className="old-price">
-                                            ${product.oldProce}
+                                            ${product.oldPrice.toFixed(2)}
                                         </span>
                                     </div>
                                     <div className="product-review">
@@ -58,7 +72,7 @@ export default function Details({ product, relatedProducts }) {
                                         ut labore et.
                                     </p>
                                     <div className="product-add-to-cart">
-                                        <div className="input-counter">
+                                        {/* <div className="input-counter">
                                             <span className="minus-btn">
                                                 <i className="bx bx-minus"></i>
                                             </span>
@@ -73,10 +87,11 @@ export default function Details({ product, relatedProducts }) {
                                             <span className="plus-btn">
                                                 <i className="bx bx-plus"></i>
                                             </span>
-                                        </div>
+                                        </div> */}
                                         <button
                                             type="button"
                                             className="default-btn"
+                                            onClick={() => addToCart()}
                                         >
                                             Add to cart
                                             <span></span>
@@ -170,8 +185,8 @@ export default function Details({ product, relatedProducts }) {
                             <div className="row">
                                 <div className="col-lg-12 col-md-12">
                                     <ul className="tabs">
-                                        <li>
-                                            <a href="#">
+                                        <li className="current">
+                                            <a style={{ cursor: "pointer" }}>
                                                 <div className="dot"></div>
                                                 Description
                                             </a>

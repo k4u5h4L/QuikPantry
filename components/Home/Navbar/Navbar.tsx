@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { CartContext } from "@/utils/CartContext";
 
 export default function Navbar() {
+    const { value, setValue } = useContext(CartContext);
+
+    useEffect(() => {
+        const cartItems: string[] =
+            JSON.parse(localStorage.getItem("cart")) || [];
+        setValue(cartItems.length);
+    }, []);
+
     return (
         <div className="navbar-area">
             <div className="main-responsive-nav">
@@ -365,7 +374,8 @@ export default function Navbar() {
                                         <Link href="/cart">
                                             <a>
                                                 <i className="flaticon-shopping-cart"></i>
-                                                <span>0</span>
+                                                {/* <span>{cartNo}</span> */}
+                                                <span>{value}</span>
                                             </a>
                                         </Link>
                                     </div>
