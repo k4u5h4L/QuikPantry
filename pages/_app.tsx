@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <title>QuikPantry</title>
             </Head>
             <NextNprogress
-                color="#8e4aec"
+                color="#f99459"
                 startPosition={0.3}
                 stopDelayMs={200}
                 height={3}
