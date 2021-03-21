@@ -43,11 +43,13 @@ export default function Navbar() {
                         >
                             <ul className="navbar-nav">
                                 <li className="nav-item">
-                                    <a href="#" className="nav-link active">
-                                        Home
-                                        <i className="bx bx-chevron-down"></i>
-                                    </a>
-                                    <ul className="dropdown-menu">
+                                    <Link href="/">
+                                        <a className="nav-link">
+                                            Home
+                                            {/* <i className="bx bx-chevron-down"></i> */}
+                                        </a>
+                                    </Link>
+                                    {/* <ul className="dropdown-menu">
                                         <li className="nav-item">
                                             <a
                                                 href="index.html"
@@ -83,16 +85,18 @@ export default function Navbar() {
                                                 Home Four
                                             </a>
                                         </li>
-                                    </ul>
+                                    </ul> */}
                                 </li>
 
                                 <li className="nav-item">
-                                    <a href="#" className="nav-link">
-                                        Pages
-                                        <i className="bx bx-chevron-down"></i>
-                                    </a>
+                                    <Link href="login">
+                                        <a className="nav-link">
+                                            Login
+                                            {/* <i className="bx bx-chevron-down"></i> */}
+                                        </a>
+                                    </Link>
 
-                                    <ul className="dropdown-menu">
+                                    {/* <ul className="dropdown-menu">
                                         <li className="nav-item">
                                             <a
                                                 href="about.html"
@@ -208,16 +212,18 @@ export default function Navbar() {
                                                 Privacy Policy
                                             </a>
                                         </li>
-                                    </ul>
+                                    </ul> */}
                                 </li>
 
                                 <li className="nav-item">
-                                    <a href="#" className="nav-link">
-                                        Services
-                                        <i className="bx bx-chevron-down"></i>
-                                    </a>
+                                    <Link href="/shop">
+                                        <a className="nav-link">
+                                            Shop
+                                            {/* <i className="bx bx-chevron-down"></i> */}
+                                        </a>
+                                    </Link>
 
-                                    <ul className="dropdown-menu">
+                                    {/* <ul className="dropdown-menu">
                                         <li className="nav-item">
                                             <a
                                                 href="services.html"
@@ -235,10 +241,10 @@ export default function Navbar() {
                                                 Services Details
                                             </a>
                                         </li>
-                                    </ul>
+                                    </ul> */}
                                 </li>
 
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <a href="#" className="nav-link">
                                         Shop
                                         <i className="bx bx-chevron-down"></i>
@@ -340,11 +346,11 @@ export default function Navbar() {
                                     <a href="contact.html" className="nav-link">
                                         Contact
                                     </a>
-                                </li>
+                                </li> */}
                             </ul>
 
                             <div className="others-options d-flex align-items-center">
-                                <div className="option-item">
+                                {/* <div className="option-item">
                                     <div className="languages-list">
                                         <select>
                                             <option value="1">Eng</option>
@@ -352,14 +358,16 @@ export default function Navbar() {
                                             <option value="3">Span</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <div className="option-item">
                                     <div className="cart-btn">
-                                        <a href="cart.html">
-                                            <i className="flaticon-shopping-cart"></i>
-                                            <span>0</span>
-                                        </a>
+                                        <Link href="/cart">
+                                            <a>
+                                                <i className="flaticon-shopping-cart"></i>
+                                                <span>0</span>
+                                            </a>
+                                        </Link>
                                     </div>
                                 </div>
 
