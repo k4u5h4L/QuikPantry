@@ -14,24 +14,38 @@ export default function LoginForm() {
     return (
         <section className="login-area ptb-100">
             <div className="container">
-                <div className="login-form">
-                    <h2>Login</h2>
-                    <p>
-                        A verification email will be sent to your email address.
-                        Click on the link sent to be logged in.
-                    </p>
+                {!session ? (
+                    <div className="login-form">
+                        <h2>Login</h2>
+                        <p>
+                            A verification email will be sent to your email
+                            address. Click on the link sent to be logged in.
+                        </p>
 
-                    <form>
-                        <div className="form-group">
-                            <label>Username or email</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Username or email"
-                            />
-                        </div>
+                        <form
+                            action="#"
+                            onSubmit={(e) => {
+                                e.preventDefault();
 
-                        {/* <div className="form-group">
+                                signIn("email", {
+                                    email: emailData,
+                                    callbackUrl:
+                                        "http://localhost:3000/login/verify/",
+                                    redirect: true,
+                                });
+                            }}
+                        >
+                            <div className="form-group">
+                                <label>Email</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Enter your email"
+                                    onChange={() => emailChangeHandler(event)}
+                                />
+                            </div>
+
+                            {/* <div className="form-group">
                             <label>Password</label>
                             <input
                                 type="password"
@@ -40,7 +54,7 @@ export default function LoginForm() {
                             />
                         </div> */}
 
-                        {/* <div className="row align-items-center">
+                            {/* <div className="row align-items-center">
                             <div className="col-lg-6 col-md-6 col-sm-6">
                                 <div className="form-check">
                                     <input
@@ -64,11 +78,45 @@ export default function LoginForm() {
                             </div>
                         </div> */}
 
-                        <button type="submit" className="default-btn">
-                            Login
+                            <button
+                                type="submit"
+                                className="default-btn"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    // signIn("email", emailData, {
+                                    //     callbackUrl:
+                                    //         "/login/verify",
+                                    //     redirect: true,
+                                    // });
+                                    signIn("email", {
+                                        email: emailData,
+                                        callbackUrl:
+                                            "http://localhost:3000/login/verify/",
+                                        redirect: true,
+                                    });
+                                }}
+                            >
+                                Login
+                            </button>
+                        </form>
+                    </div>
+                ) : (
+                    <div className="login-form">
+                        <h2>Verify login</h2>
+                        <p>
+                            Not <b>{session.user.name || session.user.email}</b>
+                            ? Then logout and login again!
+                        </p>
+                        <button
+                            type="button"
+                            className="default-btn"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => signOut()}
+                        >
+                            Logout
                         </button>
-                    </form>
-                </div>
+                    </div>
+                )}
             </div>
         </section>
     );
