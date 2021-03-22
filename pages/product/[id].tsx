@@ -66,7 +66,7 @@ export default function ProductPage({ product, relatedPdts }) {
             <Banner title="Product Details" path="product" />
             <Details
                 product={JSON.parse(product)}
-                relatedProducts={JSON.parse(relatedPdts).slice(0, 5)}
+                relatedProducts={JSON.parse(relatedPdts).slice(0, 4)}
             />
         </>
     );

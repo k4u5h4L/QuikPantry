@@ -49,7 +49,7 @@ const Index = ({ products }) => (
         <Navbar />
         {/* <Sidebar /> */}
         <Banner />
-        <Featured products={JSON.parse(products).slice(0, 9)} />
+        <Featured products={JSON.parse(products).slice(0, 8)} />
         <WhyUs />
         <Footer />
         <GoToTop />
