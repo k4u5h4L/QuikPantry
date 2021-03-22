@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import { GetServerSideProps } from "next";
 
 // import Navbar from "@/components/Home/Navbar/Navbar";
@@ -11,7 +12,9 @@ import Banner from "@/components/Shop/Banner/Banner";
 import Products from "@/components/Shop/Products/Products/Products";
 import Footer from "@/components/Home/Footer/Footer";
 import GoToTop from "@/components/GoToTop";
+import { ProductType } from "@/types/index";
 // import QuickView from "@/components/Home/QuickView/QuickView";
+
 import dbConnect from "@/utils/dbConnect";
 import Product from "@/models/Product";
 
@@ -20,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const { q } = context.query;
 
-    const pdts = await Product.find({
+    const pdts: ProductType[] = await Product.find({
         name: new RegExp(`${q}`, "i"),
         tags: new RegExp(`${q}`, "i"),
     });

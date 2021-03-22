@@ -397,8 +397,7 @@ export default function Navbar() {
                                 <div className="option-item">
                                     <form
                                         className="search-box"
-                                        action="#"
-                                        onSubmit={() => searchSubmitHandler()}
+                                        // onSubmit={() => searchSubmitHandler()}
                                     >
                                         <input
                                             type="text"
