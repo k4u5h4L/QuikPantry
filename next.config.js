@@ -10,6 +10,12 @@ module.exports = {
             "i1.wp.com",
             "images-na.ssl-images-amazon.com",
             "cdn-prod.medicalnewstoday.com",
+            "images2.minutemediacdn.com",
+            "cdn.apartmenttherapy.info",
+            "res.cloudinary.com",
+            "thespruceeats.com",
+            "www.thespruceeats.com",
+            "images.ctfassets.net",
         ],
     },
 };

@@ -1,64 +1,92 @@
-[{
-  "_id": {
-    "$oid": "605715d0dc9f126486088476"
-  },
-  "tags": [
-    "tomato",
-    "fruit"
-  ],
-  "name": "Seasoned Tomatoes",
-  "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
-  "oldPrice": 652,
-  "price": 540,
-  "rating": 4,
-  "imageUrl": "https://templates.envytheme.com/orgo/default/assets/img/top-products/top-products-7.jpg",
-  "stock": true
-},{
-  "_id": {
-    "$oid": "6057360650d51052c355cddf"
-  },
-  "tags": [
-    "potato",
-    "chips",
-    "snack"
-  ],
-  "name": "Potato Chips",
-  "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
-  "oldPrice": 56,
-  "price": 43,
-  "rating": 5,
-  "imageUrl": "https://i1.wp.com/www.eatthis.com/wp-content/uploads/2018/09/bowl-potato-chips.jpg?fit=1024%2C750&ssl=1",
-  "stock": true
-},{
-  "_id": {
-    "$oid": "6057369850d51052c355cde1"
-  },
-  "tags": [
-    "beans",
-    "jelly",
-    "snack"
-  ],
-  "name": "Jellybeans",
-  "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
-  "oldPrice": 96,
-  "price": 73,
-  "rating": 5,
-  "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61OSYMDGSxL._SL1024_.jpg",
-  "stock": true
-},{
-  "_id": {
-    "$oid": "605736fb50d51052c355cde2"
-  },
-  "tags": [
-    "fruit",
-    "green",
-    "sweet"
-  ],
-  "name": "Kiwi Fruit",
-  "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
-  "oldPrice": 106,
-  "price": 78,
-  "rating": 5,
-  "imageUrl": "https://cdn-prod.medicalnewstoday.com/content/images/articles/271/271232/chopped-kiwi-in-a-bowl-on-a-table.jpg",
-  "stock": true
-}]
+[
+    {
+        "tags": ["pineapple", "fruit", "sweet"],
+        "name": "Pineapples",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
+        "oldPrice": 652,
+        "price": 540,
+        "rating": 4,
+        "imageUrl": "https://templates.envytheme.com/orgo/default/assets/img/top-products/top-products-7.jpg",
+        "stock": true
+    },
+    {
+        "tags": ["potato", "chips", "snack"],
+        "name": "Potato Chips",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
+        "oldPrice": 56,
+        "price": 43,
+        "rating": 5,
+        "imageUrl": "https://i1.wp.com/www.eatthis.com/wp-content/uploads/2018/09/bowl-potato-chips.jpg?fit=1024%2C750&ssl=1",
+        "stock": true
+    },
+    {
+        "tags": ["beans", "jelly", "snack"],
+        "name": "Jellybeans",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
+        "oldPrice": 96,
+        "price": 73,
+        "rating": 5,
+        "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61OSYMDGSxL._SL1024_.jpg",
+        "stock": true
+    },
+    {
+        "tags": ["fruit", "green", "sweet"],
+        "name": "Kiwi Fruit",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
+        "oldPrice": 106,
+        "price": 78,
+        "rating": 5,
+        "imageUrl": "https://cdn-prod.medicalnewstoday.com/content/images/articles/271/271232/chopped-kiwi-in-a-bowl-on-a-table.jpg",
+        "stock": true
+    },
+    {
+        "tags": ["chocolate", "brown", "sweet", "choco"],
+        "name": "Chocolates",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
+        "oldPrice": 430,
+        "price": 170,
+        "rating": 4,
+        "imageUrl": "https://images2.minutemediacdn.com/image/upload/c_crop,h_998,w_1500,x_0,y_1/v1555006794/shape/mentalfloss/istock-522735736.jpg?itok=X09xkrkm",
+        "stock": true
+    },
+    {
+        "tags": ["chocolate", "brown", "sweet", "cookie", "biscuit"],
+        "name": "Cookies",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
+        "oldPrice": 130,
+        "price": 80,
+        "rating": 5,
+        "imageUrl": "https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_4:3/k%2Farchive%2F33717f2e90894a4c4822d44a2c9cc6ea773550b3",
+        "stock": true
+    },
+    {
+        "tags": ["cake", "cream", "sweet", "chocolate", "tasty"],
+        "name": "Pastries",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
+        "oldPrice": 530,
+        "price": 370,
+        "rating": 5,
+        "imageUrl": "https://res.cloudinary.com/wegowordpress/images/f_auto,q_auto/w_1000,h_675,c_fill,g_auto/v1576210464/shutterstock_191870003_wpyl1x/shutterstock_191870003_wpyl1x-1000x675.jpg",
+        "stock": true
+    },
+    {
+        "tags": ["bread", "starch", "soft", "fresh"],
+        "name": "Bread",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
+        "oldPrice": 60,
+        "price": 45,
+        "rating": 3,
+        "imageUrl": "https://www.thespruceeats.com/thmb/0cXsoPqrGD4QKKxkWyWnUUwYQ-U=/4421x2487/smart/filters:no_upscale()/super-easy-bread-for-beginners-428108-hero-01-a3c09d713f9e4055977a72c391d353c9.jpg",
+        "stock": true
+    },
+    {
+        "tags": ["meat", "chicken", "mutton", "fresh"],
+        "name": "Meat",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
+        "oldPrice": 340,
+        "price": 280,
+        "rating": 4,
+        "imageUrl": "https://images.ctfassets.net/3s5io6mnxfqz/5GlOYuzg0nApcehTPlbJMy/140abddf0f3f93fa16568f4d035cd5e6/AdobeStock_175165460.jpeg",
+        "stock": true
+    }
+]
