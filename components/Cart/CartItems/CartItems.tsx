@@ -72,21 +72,33 @@ export default function CartItems() {
                                                 ) => (
                                                     <tr key={index}>
                                                         <td className="product-thumbnail">
-                                                            <a href="#">
-                                                                <Image
-                                                                    src={
-                                                                        item.imageUrl
-                                                                    }
-                                                                    alt="item"
-                                                                    width={80}
-                                                                    height={80}
-                                                                />
-                                                            </a>
+                                                            <Link
+                                                                href={`/product/${item._id}`}
+                                                            >
+                                                                <a>
+                                                                    <Image
+                                                                        src={
+                                                                            item.imageUrl
+                                                                        }
+                                                                        alt="item"
+                                                                        width={
+                                                                            80
+                                                                        }
+                                                                        height={
+                                                                            80
+                                                                        }
+                                                                    />
+                                                                </a>
+                                                            </Link>
                                                         </td>
                                                         <td className="product-name">
-                                                            <a href="shop-details.html">
-                                                                {item.name}
-                                                            </a>
+                                                            <Link
+                                                                href={`/product/${item._id}`}
+                                                            >
+                                                                <a>
+                                                                    {item.name}
+                                                                </a>
+                                                            </Link>
                                                         </td>
                                                         <td className="product-price">
                                                             <span className="unit-amount">
@@ -132,11 +144,9 @@ export default function CartItems() {
                                             )}
                                         </tbody>
                                     ) : (
-                                        <tbody>
-                                            <h4 className="d-flex justify-content-center">
-                                                No Items in the cart yet
-                                            </h4>
-                                        </tbody>
+                                        <h4 className="d-flex justify-content-center">
+                                            No Items in the cart yet
+                                        </h4>
                                     )}
                                 </table>
                             </div>

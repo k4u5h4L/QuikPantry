@@ -1,22 +1,27 @@
 import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
 import { ProductType } from "@/types/index";
 import { CartContext } from "@/utils/CartContext";
 
-export default function CheckoutPage() {
+export default function CheckoutPage({ ordered, setOrdered }) {
     const [cartItems, setCartItems] = useState<ProductType[]>([]);
 
     const { value, setValue } = useContext(CartContext);
 
-    const router = useRouter();
+    // const router = useRouter();
+
+    // console.log(router);
+    // console.log(window.history);
 
     const placeOrder = () => {
         setValue(0);
         setCartItems([]);
         localStorage.setItem("cart", "[]");
-        router.push(`/`);
+        // router.push(`/`);
+        // alert("Order placed!");
+        setOrdered(true);
     };
 
     useEffect(() => {
@@ -33,7 +38,7 @@ export default function CheckoutPage() {
 
                     const data: ProductType[] = await res.json();
 
-                    console.log(data);
+                    // console.log(data);
                     setCartItems(data);
                 } catch (err: any) {
                     console.error("Error in fetching products");
@@ -274,72 +279,39 @@ export default function CheckoutPage() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td className="product-name">
-                                                    <a href="shop-details.html">
-                                                        Darling Oranges
-                                                    </a>
-                                                </td>
-                                                <td className="product-total">
-                                                    <span className="subtotal-amount">
-                                                        $455.00
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="product-name">
-                                                    <a href="shop-details.html">
-                                                        Strawberry
-                                                    </a>
-                                                </td>
-                                                <td className="product-total">
-                                                    <span className="subtotal-amount">
-                                                        $541.50
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="product-name">
-                                                    <a href="shop-details.html">
-                                                        Cabbage
-                                                    </a>
-                                                </td>
-                                                <td className="product-total">
-                                                    <span className="subtotal-amount">
-                                                        $140.50
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="product-name">
-                                                    <a href="shop-details.html">
-                                                        Nectarine
-                                                    </a>
-                                                </td>
-                                                <td className="product-total">
-                                                    <span className="subtotal-amount">
-                                                        $547.00
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="order-subtotal">
-                                                    <span>
-                                                        Seasoned Tomatoes
-                                                    </span>
-                                                </td>
-                                                <td className="order-subtotal-price">
-                                                    <span className="order-subtotal-amount">
-                                                        $1683.50
-                                                    </span>
-                                                </td>
-                                            </tr>
+                                            {cartItems.map(
+                                                (
+                                                    item: ProductType,
+                                                    index: number
+                                                ) => (
+                                                    <tr key={index}>
+                                                        <td className="product-name">
+                                                            <Link
+                                                                href={`/product/${item._id}`}
+                                                            >
+                                                                <a>
+                                                                    {item.name}
+                                                                </a>
+                                                            </Link>
+                                                        </td>
+                                                        <td className="product-total">
+                                                            <span className="subtotal-amount">
+                                                                $
+                                                                {item.price.toFixed(
+                                                                    2
+                                                                )}
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            )}
+
                                             <tr>
                                                 <td className="order-shipping">
-                                                    <span>Seasoned Carrot</span>
+                                                    <span>Shipping</span>
                                                 </td>
                                                 <td className="shipping-price">
-                                                    <span>$30.00</span>
+                                                    <span>$20.00</span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -348,7 +320,18 @@ export default function CheckoutPage() {
                                                 </td>
                                                 <td className="product-subtotal">
                                                     <span className="subtotal-amount">
-                                                        $1713.50
+                                                        $
+                                                        {(
+                                                            cartItems.reduce(
+                                                                (
+                                                                    total: number,
+                                                                    cur: ProductType
+                                                                ) =>
+                                                                    total +
+                                                                    cur.price,
+                                                                0
+                                                            ) + 20
+                                                        ).toFixed(2)}
                                                     </span>
                                                 </td>
                                             </tr>
@@ -363,7 +346,7 @@ export default function CheckoutPage() {
                                                 type="radio"
                                                 id="direct-bank-transfer"
                                                 name="radio-group"
-                                                checked
+                                                // checked
                                             />
                                             <label htmlFor="direct-bank-transfer">
                                                 Direct Bank Transfer
@@ -380,9 +363,7 @@ export default function CheckoutPage() {
                                                 id="paypal"
                                                 name="radio-group"
                                             />
-                                            <label htmlFor="paypal">
-                                                PayPal
-                                            </label>
+                                            <label htmlFor="paypal">UPI</label>
                                         </p>
                                         <p>
                                             <input

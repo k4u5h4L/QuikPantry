@@ -14,3 +14,8 @@ export interface ProductType {
     stock: boolean;
     tags: [string];
 }
+
+export interface OrderInstruType {
+    title: string;
+    desc: string;
+}

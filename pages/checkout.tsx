@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // import Navbar from "@/components/Home/Navbar/Navbar";
 import dynamic from "next/dynamic";
@@ -16,14 +16,28 @@ const CheckoutPage = dynamic(
 );
 import Footer from "@/components/Home/Footer/Footer";
 import GoToTop from "@/components/GoToTop";
+import OrderPlaced from "@/components/OrderPlaced/OrderPlaced";
 
 export default function Checkout() {
+    const [ordered, setOrdered] = useState<boolean>(false);
     return (
         <>
             <Navbar />
             <Sidebar />
-            <Banner title="Checkout" path="checkout" />
-            <CheckoutPage />
+            {!ordered ? (
+                <>
+                    <Banner title="Checkout" path="checkout" />
+                    <CheckoutPage
+                        ordered={ordered}
+                        setOrdered={setOrdered}
+                    />{" "}
+                </>
+            ) : (
+                <>
+                    <Banner title="Order placed" path="checkout" />
+                    <OrderPlaced />
+                </>
+            )}
             <Footer />
             <GoToTop />
         </>
