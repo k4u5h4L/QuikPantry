@@ -1,10 +1,23 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
+
 import { CartContext } from "@/utils/CartContext";
 
 export default function Navbar() {
     const { value, setValue } = useContext(CartContext);
+    const [search, setSearch] = useState<string>("");
+
+    const router = useRouter();
+
+    const searchChangeHandler = (e: any): void => {
+        setSearch(e.target.value);
+    };
+
+    const searchSubmitHandler = (): void => {
+        router.push(`/search?q=${encodeURI(search)}`);
+    };
 
     useEffect(() => {
         const cartItems: string[] =
@@ -382,25 +395,37 @@ export default function Navbar() {
                                 </div>
 
                                 <div className="option-item">
-                                    <form className="search-box">
+                                    <form
+                                        className="search-box"
+                                        action="#"
+                                        onSubmit={() => searchSubmitHandler()}
+                                    >
                                         <input
                                             type="text"
                                             className="form-control"
                                             placeholder="Search"
+                                            onChange={() =>
+                                                searchChangeHandler(event)
+                                            }
                                         />
-                                        <button type="submit">
+                                        <button
+                                            type="submit"
+                                            onClick={() =>
+                                                searchSubmitHandler()
+                                            }
+                                        >
                                             <i className="flaticon-search"></i>
                                         </button>
                                     </form>
                                 </div>
 
-                                <div className="option-item">
+                                {/* <div className="option-item">
                                     <div className="burger-menu">
                                         <span></span>
                                         <span></span>
                                         <span></span>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </nav>

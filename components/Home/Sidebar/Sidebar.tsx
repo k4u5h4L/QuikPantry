@@ -14,7 +14,7 @@ export default function Sidebar() {
                     </div>
                 </div>
 
-                <div className="sidebar-instagram-feed">
+                {/* <div className="sidebar-instagram-feed">
                     <h2>Instagram</h2>
                     <ul>
                         <li>
@@ -82,50 +82,57 @@ export default function Sidebar() {
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> */}
 
                 <div className="sidebar-contact-area">
                     <div className="contact-info">
                         <div className="contact-info-content">
                             <h2>
-                                <a href="tel:+0881306298615">
-                                    +088 130 629 8615
-                                </a>
+                                <a href="tel:+0881306298615">+91 1333333337</a>
                                 <span>OR</span>
-                                <a href="mailto:orgo@gmail.com">
-                                    orgo@gmail.com
+                                <a href="mailto:kaushal.v.bhat@gmail.com">
+                                    kaushal.v.bhat@gmail.com
                                 </a>
                             </h2>
 
                             <ul className="social">
                                 <li>
-                                    <a href="#" target="_blank">
-                                        <i className="bx bxl-facebook"></i>
+                                    <a
+                                        href="https://github.com/k4u5h4L/"
+                                        className="facebook"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <i className="bx bxl-github"></i>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#" target="_blank">
+                                {/* <li>
+                                    <a
+                                        href="#"
+                                        className="twitter"
+                                        target="_blank"
+                                    >
                                         <i className="bx bxl-twitter"></i>
                                     </a>
-                                </li>
+                                </li> */}
                                 <li>
-                                    <a href="#" target="_blank">
-                                        <i className="bx bxl-instagram"></i>
+                                    <a
+                                        href="mailto:kaushal.v.bhat@gmail.com"
+                                        className="google"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <i className="bx bxl-google"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">
+                                    <a
+                                        href="https://www.linkedin.com/in/kaushal-bhat-8374451a2"
+                                        className="linkedin"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
                                         <i className="bx bxl-linkedin"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <i className="bx bxl-pinterest-alt"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <i className="bx bxl-youtube"></i>
                                     </a>
                                 </li>
                             </ul>

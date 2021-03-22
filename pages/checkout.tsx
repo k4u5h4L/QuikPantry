@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 const Navbar = dynamic(() => import("@/components/Home/Navbar/Navbar"), {
     ssr: false,
 });
-import Sidebar from "@/components/Home/Sidebar/Sidebar";
+// import Sidebar from "@/components/Home/Sidebar/Sidebar";
 import Banner from "@/components/Shop/Banner/Banner";
 // import CheckoutPage from "@/components/Checkout/CheckoutPage";
 const CheckoutPage = dynamic(
@@ -23,7 +23,7 @@ export default function Checkout() {
     return (
         <>
             <Navbar />
-            <Sidebar />
+            {/* <Sidebar /> */}
             {!ordered ? (
                 <>
                     <Banner title="Checkout" path="checkout" />

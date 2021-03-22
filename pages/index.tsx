@@ -7,7 +7,7 @@ const Navbar = dynamic(() => import("@/components/Home/Navbar/Navbar"), {
     ssr: false,
 });
 // import Navbar from "@/components/Home/Navbar/Navbar";
-import Sidebar from "@/components/Home/Sidebar/Sidebar";
+// import Sidebar from "@/components/Home/Sidebar/Sidebar";
 import Banner from "@/components/Home/Banner/Banner";
 import Featured from "@/components/Home/Featured/Featured";
 import WhyUs from "@/components/Home/WhyUs/WhyUs";
@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 const Index = ({ products }) => (
     <>
         <Navbar />
-        <Sidebar />
+        {/* <Sidebar /> */}
         <Banner />
         <Featured products={JSON.parse(products).slice(0, 9)} />
         <WhyUs />

@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 const Navbar = dynamic(() => import("@/components/Home/Navbar/Navbar"), {
     ssr: false,
 });
-import Sidebar from "@/components/Home/Sidebar/Sidebar";
+// import Sidebar from "@/components/Home/Sidebar/Sidebar";
 import Banner from "@/components/Shop/Banner/Banner";
 // import CartItems from "@/components/Cart/CartItems/CartItems";
 const CartItems = dynamic(
@@ -21,7 +21,7 @@ export default function Cart() {
     return (
         <>
             <Navbar />
-            <Sidebar />
+            {/* <Sidebar /> */}
             <Banner title="Cart" path="cart" />
             <CartItems />
             <Footer />

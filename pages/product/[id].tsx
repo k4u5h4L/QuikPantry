@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 const Navbar = dynamic(() => import("@/components/Home/Navbar/Navbar"), {
     ssr: false,
 });
-import Sidebar from "@/components/Home/Sidebar/Sidebar";
+// import Sidebar from "@/components/Home/Sidebar/Sidebar";
 import Banner from "@/components/Shop/Banner/Banner";
 import dbConnect from "@/utils/dbConnect";
 // import Details from "@/components/Product/Details/Details";
@@ -62,7 +62,7 @@ export default function ProductPage({ product, relatedPdts }) {
     return (
         <>
             <Navbar />
-            <Sidebar />
+            {/* <Sidebar /> */}
             <Banner title="Product Details" path="product" />
             <Details
                 product={JSON.parse(product)}

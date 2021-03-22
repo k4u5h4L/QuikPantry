@@ -1,5 +1,5 @@
 import React from "react";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 
 // import Navbar from "@/components/Home/Navbar/Navbar";
 import dynamic from "next/dynamic";
@@ -15,10 +15,15 @@ import GoToTop from "@/components/GoToTop";
 import dbConnect from "@/utils/dbConnect";
 import Product from "@/models/Product";
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
     await dbConnect();
 
-    const pdts = await Product.find({});
+    const { q } = context.query;
+
+    const pdts = await Product.find({
+        name: new RegExp(`${q}`, "i"),
+        tags: new RegExp(`${q}`, "i"),
+    });
 
     // console.log(pdts);
 
@@ -26,16 +31,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
         props: {
             pdts: JSON.stringify(pdts),
         },
-        revalidate: 10,
     };
 };
 
-export default function ShopIndex({ pdts }) {
+export default function Search({ pdts }) {
     return (
         <>
             <Navbar />
             {/* <Sidebar /> */}
-            <Banner title="Shop List" path="shop" />
+            <Banner title="Search products" path="search" />
             <Products products={JSON.parse(pdts)} />
             <Footer />
             <GoToTop />
