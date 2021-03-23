@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 
 export default function Footer() {
+    // const instPics: string[] = ["", ""];
+    const picIndex: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
     return (
         <div className="footer-area pt-100 pb-70">
             <div className="container">
@@ -73,140 +75,24 @@ export default function Footer() {
                             <h3>Instagram</h3>
 
                             <ul className="instagram-list">
-                                <li>
-                                    <div className="box">
-                                        <img
-                                            src="/assets/img/instagram/instagram1.jpg"
-                                            alt="image"
-                                        />
-                                        <i className="bx bxl-instagram"></i>
-                                        <a
-                                            href="#"
-                                            target="_blank"
-                                            className="link-btn"
-                                        ></a>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div className="box">
-                                        <img
-                                            src="/assets/img/instagram/instagram2.jpg"
-                                            alt="image"
-                                        />
-                                        <i className="bx bxl-instagram"></i>
-                                        <a
-                                            href="#"
-                                            target="_blank"
-                                            className="link-btn"
-                                        ></a>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div className="box">
-                                        <img
-                                            src="/assets/img/instagram/instagram3.jpg"
-                                            alt="image"
-                                        />
-                                        <i className="bx bxl-instagram"></i>
-                                        <a
-                                            href="#"
-                                            target="_blank"
-                                            className="link-btn"
-                                        ></a>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div className="box">
-                                        <img
-                                            src="/assets/img/instagram/instagram4.jpg"
-                                            alt="image"
-                                        />
-                                        <i className="bx bxl-instagram"></i>
-                                        <a
-                                            href="#"
-                                            target="_blank"
-                                            className="link-btn"
-                                        ></a>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div className="box">
-                                        <img
-                                            src="/assets/img/instagram/instagram5.jpg"
-                                            alt="image"
-                                        />
-                                        <i className="bx bxl-instagram"></i>
-                                        <a
-                                            href="#"
-                                            target="_blank"
-                                            className="link-btn"
-                                        ></a>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div className="box">
-                                        <img
-                                            src="/assets/img/instagram/instagram6.jpg"
-                                            alt="image"
-                                        />
-                                        <i className="bx bxl-instagram"></i>
-                                        <a
-                                            href="#"
-                                            target="_blank"
-                                            className="link-btn"
-                                        ></a>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div className="box">
-                                        <img
-                                            src="/assets/img/instagram/instagram7.jpg"
-                                            alt="image"
-                                        />
-                                        <i className="bx bxl-instagram"></i>
-                                        <a
-                                            href="#"
-                                            target="_blank"
-                                            className="link-btn"
-                                        ></a>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div className="box">
-                                        <img
-                                            src="/assets/img/instagram/instagram8.jpg"
-                                            alt="image"
-                                        />
-                                        <i className="bx bxl-instagram"></i>
-                                        <a
-                                            href="#"
-                                            target="_blank"
-                                            className="link-btn"
-                                        ></a>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div className="box">
-                                        <img
-                                            src="/assets/img/instagram/instagram1.jpg"
-                                            alt="image"
-                                        />
-                                        <i className="bx bxl-instagram"></i>
-                                        <a
-                                            href="#"
-                                            target="_blank"
-                                            className="link-btn"
-                                        ></a>
-                                    </div>
-                                </li>
+                                {picIndex.map((pic, index) => (
+                                    <li key={index}>
+                                        <div className="box">
+                                            <Image
+                                                src={`https://templates.envytheme.com/orgo/default/assets/img/instagram/instagram${pic}.jpg`}
+                                                alt="image"
+                                                width={92}
+                                                height={72}
+                                            />
+                                            <i className="bx bxl-instagram"></i>
+                                            <a
+                                                href="#"
+                                                target="_blank"
+                                                className="link-btn"
+                                            ></a>
+                                        </div>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>

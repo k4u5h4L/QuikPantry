@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Banner() {
@@ -8,27 +9,22 @@ export default function Banner() {
                     <div className="d-table-cell">
                         <div className="container">
                             <div className="main-banner-content">
-                                <span>Take Natural Taste From Our Shop</span>
-                                <h1>Organic Food Is Good For Health</h1>
+                                <span>Taste freshness and purity</span>
+                                <h1>So Organic, It&apos;s Criminal</h1>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua
-                                    quis ipsum suspendisse
+                                    You wanna get fit like us? Eat fresh by
+                                    buying stuff from this site as we&apos;re
+                                    getting ripped too.
                                 </p>
                                 <div className="banner-btn">
-                                    <a
-                                        href="shop-1.html"
-                                        className="default-btn"
-                                    >
-                                        Our Shop
-                                    </a>
-                                    <a
-                                        href="cart.html"
+                                    <Link href="/shop">
+                                        <a className="default-btn">Our Shop</a>
+                                    </Link>
+                                    {/* <a
                                         className="optional-btn"
                                     >
-                                        Add to Cart
-                                    </a>
+                                        Go to Cart
+                                    </a> */}
                                 </div>
                             </div>
                         </div>
