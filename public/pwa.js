@@ -14,6 +14,7 @@ window.addEventListener("beforeinstallprompt", (e) => {
         deferredPrompt.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === "accepted") {
                 console.log("User accepted the A2HS prompt");
+                localStorage.setItem("isInstalled", "true");
             } else {
                 console.log("User dismissed the A2HS prompt");
             }

@@ -434,14 +434,18 @@ export default function Navbar() {
                                         <span></span>
                                     </div>
                                 </div> */}
-                                <div className="option-item">
-                                    <a
-                                        className="default-btn add-button"
-                                        style={{ cursor: "pointer" }}
-                                    >
-                                        Install as PWA
-                                    </a>
-                                </div>
+
+                                {localStorage.getItem("isInstalled") ==
+                                "true" ? null : (
+                                    <div className="option-item">
+                                        <a
+                                            className="default-btn add-button"
+                                            style={{ cursor: "pointer" }}
+                                        >
+                                            Install as PWA
+                                        </a>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </nav>
