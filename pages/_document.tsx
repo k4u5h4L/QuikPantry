@@ -40,11 +40,7 @@ export default class MyDocument extends Document {
                     />
                     <link rel="stylesheet" href="/assets/css/style.css" />
                     <link rel="stylesheet" href="/assets/css/responsive.css" />
-                    <link
-                        rel="icon"
-                        type="image/png"
-                        href="/assets/img/favicon.png"
-                    />
+                    <link rel="icon" type="image/png" href="/icon.png" />
                 </Head>
                 <body>
                     <Preloader />
@@ -65,6 +61,7 @@ export default class MyDocument extends Document {
                     <script src="/assets/js/contact-form-script.js"></script>
                     <script src="/assets/js/wow.min.js"></script>
                     <script src="/assets/js/main.js"></script>
+                    <script src="/pwa.js"></script>
                 </body>
             </Html>
         );

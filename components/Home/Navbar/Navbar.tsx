@@ -266,6 +266,15 @@ export default function Navbar() {
                                     </ul> */}
                                 </li>
 
+                                <li className="nav-item">
+                                    <Link href="/cart">
+                                        <a className="nav-link">
+                                            Cart
+                                            {/* <i className="bx bx-chevron-down"></i> */}
+                                        </a>
+                                    </Link>
+                                </li>
+
                                 {/* <li className="nav-item">
                                     <a href="#" className="nav-link">
                                         Shop
@@ -425,6 +434,14 @@ export default function Navbar() {
                                         <span></span>
                                     </div>
                                 </div> */}
+                                <div className="option-item">
+                                    <a
+                                        className="default-btn add-button"
+                                        style={{ cursor: "pointer" }}
+                                    >
+                                        Install as PWA
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </nav>

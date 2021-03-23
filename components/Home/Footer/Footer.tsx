@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 
 export default function Footer() {
-    // const instPics: string[] = ["", ""];
     const picIndex: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
     return (
         <div className="footer-area pt-100 pb-70">
