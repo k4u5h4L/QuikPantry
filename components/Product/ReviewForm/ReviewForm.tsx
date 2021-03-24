@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useSession } from "next-auth/client";
 
 export default function ReviewForm() {
+    const [session] = useSession();
+
     const [title, setTitle] = useState<string>("");
     const [desc, setDesc] = useState<string>("");
 
@@ -12,10 +15,33 @@ export default function ReviewForm() {
         setDesc(e.target.value);
     };
 
+    const reviewSubmitHandler = async (): void => {
+        const review = {
+            title: title,
+            desc: desc,
+            email: session.user.email,
+            date: new Date(),
+        };
+        // save date in a different format, so later on use a .toDateString() to get back the previous format
+
+        // console.log(data);
+        const res = await fetch(`/api/review/create`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(review),
+        });
+
+        const data = await res.json();
+
+        console.log(data);
+    };
+
     return (
         <div className="review-form">
             <h3>Write a Review</h3>
-            <form>
+            <form onSubmit={() => reviewSubmitHandler()}>
                 <div className="row">
                     {/* <div className="col-lg-6 col-md-6">
                         <div className="form-group">
@@ -65,7 +91,11 @@ export default function ReviewForm() {
                         </div>
                     </div>
                     <div className="col-lg-12 col-md-12">
-                        <button type="submit" className="default-btn">
+                        <button
+                            type="button"
+                            className="default-btn"
+                            onClick={() => reviewSubmitHandler()}
+                        >
                             Submit Review
                         </button>
                     </div>
