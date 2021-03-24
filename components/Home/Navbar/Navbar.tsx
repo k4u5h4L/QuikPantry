@@ -446,6 +446,18 @@ export default function Navbar() {
                                         </a>
                                     </div>
                                 )}
+
+                                {/* <div className="option-item">
+                                    <a
+                                        className="default-btn add-button installPWA"
+                                        style={{
+                                            display: "none",
+                                            cursor: "pointer",
+                                        }}
+                                    >
+                                        Install as PWA
+                                    </a>
+                                </div> */}
                             </div>
                         </div>
                     </nav>

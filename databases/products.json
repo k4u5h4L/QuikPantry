@@ -7,7 +7,23 @@
         "price": 540,
         "rating": 4,
         "imageUrl": "https://templates.envytheme.com/orgo/default/assets/img/top-products/top-products-7.jpg",
-        "stock": true
+        "stock": true,
+        "reviews": [
+            {
+                "user": "Sadokist",
+                "rating": 5,
+                "desc": "The big apple and Snax is hungry...",
+                "title": "WHAT IN GOD'S NAME IS THAT FROM SNAX!",
+                "date": "2020-01-01T23:28:56.782Z"
+            },
+            {
+                "user": "HenryG",
+                "rating": 3,
+                "desc": "Oh that's such a blunder, what's he done that for?",
+                "title": "This is a done round, Guardian 1 v 5...",
+                "date": "2020-02-03T23:28:56.782Z"
+            }
+        ]
     },
     {
         "tags": ["potato", "chips", "snack"],
@@ -17,7 +33,23 @@
         "price": 43,
         "rating": 5,
         "imageUrl": "https://i1.wp.com/www.eatthis.com/wp-content/uploads/2018/09/bowl-potato-chips.jpg?fit=1024%2C750&ssl=1",
-        "stock": true
+        "stock": true,
+        "reviews": [
+            {
+                "user": "Machine",
+                "rating": 5,
+                "desc": "I'M STARTING TO BELIEVE AS WELL HENRY...",
+                "title": "OH FALLEN STOP BLOWING MY MIND!!",
+                "date": "2020-01-01T23:28:56.782Z"
+            },
+            {
+                "user": "Semmler",
+                "rating": 5,
+                "desc": "Well that's what happens when you go around the corner,",
+                "title": "HAPPY WITH ONE DEAG, OH AND ANOTHER ONE, OH AND A THRID HAPPY",
+                "date": "2020-02-03T23:28:56.782Z"
+            }
+        ]
     },
     {
         "tags": ["beans", "jelly", "snack"],
@@ -27,7 +59,23 @@
         "price": 73,
         "rating": 5,
         "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61OSYMDGSxL._SL1024_.jpg",
-        "stock": true
+        "stock": true,
+        "reviews": [
+            {
+                "user": "DDK",
+                "rating": 5,
+                "desc": "WHAT IS GOING ON RIGHT NOW HOW DOES HE DO THIS!!",
+                "title": "OOOOOOOOHHHHH (WHAT) THE JUMPING DOUBLE FROM COLD!!",
+                "date": "2019-11-10T23:28:56.782Z"
+            },
+            {
+                "user": "James",
+                "rating": 5,
+                "desc": "WHAT IS THIS CLUTCH FROM S1MPLE ARE YOU SERIOUS WHAT IS THAT YOU CAN'T DO THAT S1MPLE THAT'S NOT ALLOWED THIS IS NOT FPL THIS IS A MAJOR",
+                "title": "HE HAD ONE BUTTON!! THERE WAS NO ZOOM!",
+                "date": "2020-10-10T23:28:56.782Z"
+            }
+        ]
     },
     {
         "tags": ["fruit", "green", "sweet"],
@@ -37,7 +85,23 @@
         "price": 78,
         "rating": 5,
         "imageUrl": "https://cdn-prod.medicalnewstoday.com/content/images/articles/271/271232/chopped-kiwi-in-a-bowl-on-a-table.jpg",
-        "stock": true
+        "stock": true,
+        "reviews": [
+            {
+                "user": "Anders",
+                "rating": 5,
+                "desc": "THEY ARE GOING TO WIN THE ROUND BECAUSE OF IT, OMG HIKO",
+                "title": "HIKO ARE YOU KIDDING ME!!!",
+                "date": "2020-04-02T23:28:56.782Z"
+            },
+            {
+                "user": "Sadokist",
+                "rating": 5,
+                "desc": "Limited armour, limited weapons, DOESN'T EVEN MATTER",
+                "title": "DUPREEH!!! HOW SICK IS THIS DEAGLE PLAY",
+                "date": "2020-05-02T23:28:56.782Z"
+            }
+        ]
     },
     {
         "tags": ["chocolate", "brown", "sweet", "choco"],
@@ -47,7 +111,23 @@
         "price": 170,
         "rating": 4,
         "imageUrl": "https://images2.minutemediacdn.com/image/upload/c_crop,h_998,w_1500,x_0,y_1/v1555006794/shape/mentalfloss/istock-522735736.jpg?itok=X09xkrkm",
-        "stock": true
+        "stock": true,
+        "reviews": [
+            {
+                "user": "Machine",
+                "rating": 5,
+                "desc": "Shuts down four and the dream is real as he melts all five, mousesports are no more, oh my god.",
+                "title": "STOP IT GUARDIAN!",
+                "date": "2020-04-02T23:28:56.782Z"
+            },
+            {
+                "user": "Pansy",
+                "rating": 5,
+                "desc": "The final second, keeping Na'Vi alive.",
+                "title": "OHHH and edward goes wild!",
+                "date": "2020-05-02T23:28:56.782Z"
+            }
+        ]
     },
     {
         "tags": ["chocolate", "brown", "sweet", "cookie", "biscuit"],
@@ -57,7 +137,8 @@
         "price": 80,
         "rating": 5,
         "imageUrl": "https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_4:3/k%2Farchive%2F33717f2e90894a4c4822d44a2c9cc6ea773550b3",
-        "stock": true
+        "stock": true,
+        "reviews": []
     },
     {
         "tags": ["cake", "cream", "sweet", "chocolate", "tasty"],
@@ -67,7 +148,8 @@
         "price": 370,
         "rating": 5,
         "imageUrl": "https://res.cloudinary.com/wegowordpress/images/f_auto,q_auto/w_1000,h_675,c_fill,g_auto/v1576210464/shutterstock_191870003_wpyl1x/shutterstock_191870003_wpyl1x-1000x675.jpg",
-        "stock": true
+        "stock": true,
+        "reviews": []
     },
     {
         "tags": ["bread", "starch", "soft", "fresh"],
@@ -77,7 +159,16 @@
         "price": 45,
         "rating": 3,
         "imageUrl": "https://www.thespruceeats.com/thmb/0cXsoPqrGD4QKKxkWyWnUUwYQ-U=/4421x2487/smart/filters:no_upscale()/super-easy-bread-for-beginners-428108-hero-01-a3c09d713f9e4055977a72c391d353c9.jpg",
-        "stock": true
+        "stock": true,
+        "reviews": [
+            {
+                "user": "Sadokist",
+                "rating": 3,
+                "desc": "OH CHRIS CAN HE CLOSE THIS WITH AN ACE? OMG, CHRIS!",
+                "title": "THE WOLD OF WALLSTREET GETS AN ACE, AND IT'S CHAMPIONSHIP POINT, MOUSESPORTS!",
+                "date": "2020-04-02T23:28:56.782Z"
+            }
+        ]
     },
     {
         "tags": ["meat", "chicken", "mutton", "fresh"],
@@ -87,6 +178,15 @@
         "price": 280,
         "rating": 4,
         "imageUrl": "https://images.ctfassets.net/3s5io6mnxfqz/5GlOYuzg0nApcehTPlbJMy/140abddf0f3f93fa16568f4d035cd5e6/AdobeStock_175165460.jpeg",
-        "stock": true
+        "stock": true,
+        "reviews": [
+            {
+                "user": "Anders",
+                "rating": 4,
+                "desc": "They win the round because of it!",
+                "title": "OH MY GOD FRIBERG ARE YOU KIDDING ME!!",
+                "date": "2020-10-06T23:28:56.782Z"
+            }
+        ]
     }
 ]

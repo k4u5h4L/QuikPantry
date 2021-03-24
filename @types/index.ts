@@ -2,6 +2,13 @@
 
 // type Id = string;
 
+export interface ReviewType {
+    user: string;
+    rating: number;
+    desc: string;
+    title: string;
+    date: Date;
+}
 export interface ProductType {
     [key: string]: any;
     // [_id: string]: any;
@@ -13,6 +20,7 @@ export interface ProductType {
     imageUrl: string;
     stock: boolean;
     tags: [string];
+    reviews: [ReviewType];
 }
 
 export interface OrderInstruType {
