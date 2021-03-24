@@ -28,6 +28,7 @@ const ProductSchema = new mongoose.Schema({
         type: Boolean,
     },
     tags: { type: Array },
+    reviews: { type: Array },
 });
 
 export { ProductSchema };
