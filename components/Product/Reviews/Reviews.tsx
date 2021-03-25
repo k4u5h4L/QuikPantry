@@ -10,6 +10,14 @@ export default function Reviews({ product }) {
 
     const [reviews, setReviews] = useState<boolean>(false);
 
+    const ifAlreadyPosted = (): boolean => {
+        const users: string[] = product.reviews.map(
+            (review: ReviewType) => review.user
+        );
+
+        return !users.includes(session.user.email.split("@")[0]);
+    };
+
     return (
         <div className="tab products-details-tab">
             <div className="row">
@@ -129,20 +137,31 @@ export default function Reviews({ product }) {
                                             )}
                                         </div>
 
-                                        {session ? (
+                                        {session && ifAlreadyPosted() ? (
                                             <ReviewForm pId={product._id} />
                                         ) : (
                                             <div className="review-form">
                                                 <hr />
-                                                <h3>
-                                                    You can post comments only
-                                                    when you&apos;re logged in.
-                                                </h3>
-                                                <Link href="/login">
-                                                    <a className="default-btn">
-                                                        Login
-                                                    </a>
-                                                </Link>
+                                                {!ifAlreadyPosted() ? (
+                                                    <h3>
+                                                        You seem to have already
+                                                        posted a review!
+                                                    </h3>
+                                                ) : (
+                                                    <>
+                                                        <h3>
+                                                            You can post
+                                                            comments only when
+                                                            you&apos;re logged
+                                                            in.
+                                                        </h3>
+                                                        <Link href="/login">
+                                                            <a className="default-btn">
+                                                                Login
+                                                            </a>
+                                                        </Link>
+                                                    </>
+                                                )}
                                             </div>
                                         )}
                                     </div>

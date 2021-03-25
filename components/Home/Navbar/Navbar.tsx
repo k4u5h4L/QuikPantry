@@ -111,7 +111,7 @@ export default function Navbar() {
                                 </li>
 
                                 <li className="nav-item">
-                                    <Link href="login">
+                                    <Link href="/login">
                                         <a className="nav-link">
                                             Login
                                             {/* <i className="bx bx-chevron-down"></i> */}

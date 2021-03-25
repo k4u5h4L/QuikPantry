@@ -33,6 +33,7 @@ export default function ReviewForm({ pId }) {
         // save date in a different format, so later on use a .toDateString() to get back the previous format
 
         // console.log(data);
+
         try {
             const res = await fetch(`/api/review/${pId}`, {
                 method: "POST",
