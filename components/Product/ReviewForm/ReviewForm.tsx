@@ -44,7 +44,7 @@ export default function ReviewForm({ pId }) {
             });
 
             const data = await res.json();
-            router.replace(`/product/${pId}`);
+            router.reload();
         } catch (err: any) {
             console.error("Error in fetching products");
         }
