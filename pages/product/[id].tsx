@@ -54,7 +54,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
             product: JSON.stringify(product),
             relatedPdts: JSON.stringify(relatedProducts),
         }, // will be passed to the page component as props
-        revalidate: 10,
+        revalidate: 1,
     };
 };
 

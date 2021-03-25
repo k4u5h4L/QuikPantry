@@ -130,7 +130,7 @@ export default function Reviews({ product }) {
                                         </div>
 
                                         {session ? (
-                                            <ReviewForm />
+                                            <ReviewForm pId={product._id} />
                                         ) : (
                                             <div className="review-form">
                                                 <hr />

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useSession } from "next-auth/client";
+import { useRouter } from "next/router";
 
-export default function ReviewForm() {
+export default function ReviewForm({ pId }) {
     const [session] = useSession();
+    const router = useRouter();
 
     const [title, setTitle] = useState<string>("");
     const [desc, setDesc] = useState<string>("");
+    const [rating, setRating] = useState<number>(0);
 
     const titleChangeHandler = (e: any): void => {
         setTitle(e.target.value);
@@ -15,27 +18,37 @@ export default function ReviewForm() {
         setDesc(e.target.value);
     };
 
-    const reviewSubmitHandler = async (): void => {
+    const ratingChangeHandler = (r: number): void => {
+        setRating(r);
+    };
+
+    const reviewSubmitHandler = async () => {
         const review = {
             title: title,
             desc: desc,
-            email: session.user.email,
+            user: session.user.email,
+            rating: rating,
             date: new Date(),
         };
         // save date in a different format, so later on use a .toDateString() to get back the previous format
 
         // console.log(data);
-        const res = await fetch(`/api/review/create`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(review),
-        });
+        try {
+            const res = await fetch(`/api/review/${pId}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(review),
+            });
 
-        const data = await res.json();
+            const data = await res.json();
+            router.replace(`/product/${pId}`);
+        } catch (err: any) {
+            console.error("Error in fetching products");
+        }
 
-        console.log(data);
+        // console.log(data);
     };
 
     return (
@@ -65,7 +78,7 @@ export default function ReviewForm() {
                             />
                         </div>
                     </div> */}
-                    <div className="col-lg-12 col-md-12">
+                    {/* <div className="col-lg-12 col-md-12">
                         <div className="form-group">
                             <input
                                 type="text"
@@ -75,6 +88,81 @@ export default function ReviewForm() {
                                 className="form-control"
                                 onChange={() => titleChangeHandler(event)}
                             />
+                        </div>
+                    </div> */}
+                    <div className="col-lg-9 col-md-12">
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                id="review-title"
+                                name="review-title"
+                                placeholder="Enter your review a title"
+                                className="form-control"
+                                required
+                                onChange={() => titleChangeHandler(event)}
+                            />
+                        </div>
+                    </div>
+                    <div className="col-lg-3 col-md-12 ordering">
+                        <div className="form-group">
+                            <div className="rating">
+                                <input
+                                    id="star5"
+                                    name="star"
+                                    type="radio"
+                                    value={5}
+                                    className="radio-btn hide"
+                                    onClick={() => ratingChangeHandler(5)}
+                                />
+                                <label htmlFor="star5" style={{ fontSize: 27 }}>
+                                    ☆
+                                </label>
+                                <input
+                                    id="star4"
+                                    name="star"
+                                    type="radio"
+                                    value={4}
+                                    className="radio-btn hide"
+                                    onClick={() => ratingChangeHandler(4)}
+                                />
+                                <label htmlFor="star4" style={{ fontSize: 27 }}>
+                                    ☆
+                                </label>
+                                <input
+                                    id="star3"
+                                    name="star"
+                                    type="radio"
+                                    value={3}
+                                    className="radio-btn hide"
+                                    onClick={() => ratingChangeHandler(3)}
+                                />
+                                <label htmlFor="star3" style={{ fontSize: 27 }}>
+                                    ☆
+                                </label>
+                                <input
+                                    id="star2"
+                                    name="star"
+                                    type="radio"
+                                    value={2}
+                                    className="radio-btn hide"
+                                    onClick={() => ratingChangeHandler(2)}
+                                />
+                                <label htmlFor="star2" style={{ fontSize: 27 }}>
+                                    ☆
+                                </label>
+                                <input
+                                    id="star1"
+                                    name="star"
+                                    type="radio"
+                                    value={1}
+                                    className="radio-btn hide"
+                                    onClick={() => ratingChangeHandler(1)}
+                                />
+                                <label htmlFor="star1" style={{ fontSize: 27 }}>
+                                    ☆
+                                </label>
+                                {/* <div className="clear"></div> */}
+                            </div>
                         </div>
                     </div>
                     <div className="col-lg-12 col-md-12">
@@ -86,6 +174,7 @@ export default function ReviewForm() {
                                 rows={7}
                                 placeholder="Write your comments here"
                                 className="form-control"
+                                required
                                 onChange={() => descChangeHandler(event)}
                             ></textarea>
                         </div>

@@ -40,6 +40,7 @@ export default class MyDocument extends Document {
                     />
                     <link rel="stylesheet" href="/assets/css/style.css" />
                     <link rel="stylesheet" href="/assets/css/responsive.css" />
+                    <link rel="stylesheet" href="/assets/css/rating.css" />
                     <link rel="icon" type="image/png" href="/icon.png" />
                 </Head>
                 <body>
