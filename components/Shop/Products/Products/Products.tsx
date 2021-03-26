@@ -9,13 +9,15 @@ export default function Products({ products }) {
         <section className="top-products-area pt-100 pb-100">
             <div className="container">
                 <div className="orgo-grid-sorting row align-items-center">
-                    <div className="col-lg-6 col-md-6 result-count">
-                        {/* <p>
+                    {products.length != 0 ? (
+                        <div className="col-lg-6 col-md-6 result-count">
+                            {/* <p>
                             We found <span className="count">10</span> products
                             available for you
                         </p> */}
-                        <p>Totally fresh and authentic goods.</p>
-                    </div>
+                            <p>Totally fresh and authentic goods.</p>
+                        </div>
+                    ) : null}
 
                     {/* <div className="col-lg-6 col-md-6 ordering">
                         <div className="select-box">
@@ -60,22 +62,23 @@ export default function Products({ products }) {
                 </div>
 
                 <div className="row">
-                    {products.map((prod: ProductType, index: number) => (
-                        <div className="col-lg-3 col-md-6" key={index}>
-                            <div className="top-products-item">
-                                <div className="products-image">
-                                    <Link href={`/product/${prod._id}`}>
-                                        <a>
-                                            <Image
-                                                src={prod.imageUrl}
-                                                alt="image"
-                                                width={600}
-                                                height={600}
-                                            />
-                                        </a>
-                                    </Link>
+                    {products.length != 0 ? (
+                        products.map((prod: ProductType, index: number) => (
+                            <div className="col-lg-3 col-md-6" key={index}>
+                                <div className="top-products-item">
+                                    <div className="products-image">
+                                        <Link href={`/product/${prod._id}`}>
+                                            <a>
+                                                <Image
+                                                    src={prod.imageUrl}
+                                                    alt="image"
+                                                    width={600}
+                                                    height={600}
+                                                />
+                                            </a>
+                                        </Link>
 
-                                    {/* <ul className="products-action">
+                                        {/* <ul className="products-action">
                                         <li>
                                             <a
                                                 href="cart.html"
@@ -110,45 +113,48 @@ export default function Products({ products }) {
                                         </li>
                                     </ul> */}
 
-                                    <div className="sale">
-                                        <span>Sale</span>
+                                        <div className="sale">
+                                            <span>Sale</span>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className="products-content">
-                                    <h3>
-                                        <Link href={`/product/${prod._id}`}>
-                                            <a>{prod.name}</a>
-                                        </Link>
-                                    </h3>
-                                    <div className="price">
-                                        <span className="new-price">
-                                            ${prod.price}
-                                        </span>
-                                        <span> </span>
-                                        <span className="old-price">
-                                            ${prod.oldPrice}
-                                        </span>
+                                    <div className="products-content">
+                                        <h3>
+                                            <Link href={`/product/${prod._id}`}>
+                                                <a>{prod.name}</a>
+                                            </Link>
+                                        </h3>
+                                        <div className="price">
+                                            <span className="new-price">
+                                                ${prod.price}
+                                            </span>
+                                            <span> </span>
+                                            <span className="old-price">
+                                                ${prod.oldPrice}
+                                            </span>
+                                        </div>
+                                        <ul className="rating">
+                                            <li>
+                                                {[...Array(prod.rating)].map(
+                                                    (
+                                                        rating: number,
+                                                        index: number
+                                                    ) => (
+                                                        <i
+                                                            key={index}
+                                                            className="bx bxs-star"
+                                                        ></i>
+                                                    )
+                                                )}
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <ul className="rating">
-                                        <li>
-                                            {[...Array(prod.rating)].map(
-                                                (
-                                                    rating: number,
-                                                    index: number
-                                                ) => (
-                                                    <i
-                                                        key={index}
-                                                        className="bx bxs-star"
-                                                    ></i>
-                                                )
-                                            )}
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))
+                    ) : (
+                        <h4>No mathing products :(</h4>
+                    )}
                 </div>
             </div>
         </section>
