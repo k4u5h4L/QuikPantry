@@ -406,7 +406,7 @@ export default function Navbar() {
                                 <div className="option-item">
                                     <form
                                         className="search-box"
-                                        // onSubmit={() => searchSubmitHandler()}
+                                        onSubmit={() => searchSubmitHandler()}
                                     >
                                         <input
                                             type="text"
@@ -477,7 +477,7 @@ export default function Navbar() {
                     <div className="container">
                         <div className="option-inner">
                             <div className="others-options d-flex align-items-center">
-                                <div className="option-item">
+                                {/* <div className="option-item">
                                     <div className="languages-list">
                                         <select>
                                             <option value="1">Eng</option>
@@ -485,37 +485,51 @@ export default function Navbar() {
                                             <option value="3">Span</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <div className="option-item">
                                     <div className="cart-btn">
-                                        <a href="cart.html">
-                                            <i className="flaticon-shopping-cart"></i>
-                                            <span>0</span>
-                                        </a>
+                                        <Link href="/cart">
+                                            <a>
+                                                <i className="flaticon-shopping-cart"></i>
+                                                {/* <span>{cartNo}</span> */}
+                                                <span>{value}</span>
+                                            </a>
+                                        </Link>
                                     </div>
                                 </div>
 
                                 <div className="option-item">
-                                    <form className="search-box">
+                                    <form
+                                        className="search-box"
+                                        onSubmit={() => searchSubmitHandler()}
+                                    >
                                         <input
                                             type="text"
                                             className="form-control"
                                             placeholder="Search"
+                                            onChange={() =>
+                                                searchChangeHandler(event)
+                                            }
                                         />
-                                        <button type="submit">
+                                        <button
+                                            type="submit"
+                                            onClick={() =>
+                                                searchSubmitHandler()
+                                            }
+                                        >
                                             <i className="flaticon-search"></i>
                                         </button>
                                     </form>
                                 </div>
 
-                                <div className="option-item">
+                                {/* <div className="option-item">
                                     <div className="burger-menu">
                                         <span></span>
                                         <span></span>
                                         <span></span>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
