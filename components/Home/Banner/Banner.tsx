@@ -17,7 +17,7 @@ export default function Banner() {
                                     getting ripped too.
                                 </p>
                                 <div className="banner-btn">
-                                    <Link href="/shop">
+                                    <Link href="/shop/1">
                                         <a className="default-btn">Our Shop</a>
                                     </Link>
                                     {/* <a

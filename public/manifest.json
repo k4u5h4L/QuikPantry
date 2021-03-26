@@ -10,7 +10,7 @@
             "name": "Shopping catalog",
             "short_name": "Shop",
             "description": "Shop all the products",
-            "url": "/shop?utm_source=homescreen",
+            "url": "/shop/1/?utm_source=homescreen",
             "icons": [
                 { "src": "/favicons/manifest-icon-192.png", "sizes": "192x192" }
             ]

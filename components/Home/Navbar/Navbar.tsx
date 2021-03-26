@@ -238,7 +238,7 @@ export default function Navbar() {
                                 </li>
 
                                 <li className="nav-item">
-                                    <Link href="/shop">
+                                    <Link href="/shop/1">
                                         <a className="nav-link">
                                             Shop
                                             {/* <i className="bx bx-chevron-down"></i> */}

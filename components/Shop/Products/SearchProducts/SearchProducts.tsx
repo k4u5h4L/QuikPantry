@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { ProductType } from "@/types/index";
 
-export default function Products({ products, page, totalPages }) {
+export default function SearchProducts({ products }) {
     return (
         <section className="top-products-area pt-100 pb-100">
             <div className="container">
@@ -153,32 +153,8 @@ export default function Products({ products, page, totalPages }) {
                             </div>
                         ))
                     ) : (
-                        <h4>No more products :(</h4>
+                        <h4>No mathing products :(</h4>
                     )}
-
-                    <div className="col-lg-12 col-md-12">
-                        <div className="pagination-area">
-                            {page <= 1 ? null : (
-                                <Link href={`/shop/${page - 1}`}>
-                                    <a className="prev page-numbers">
-                                        <i className="flaticon-left-arrow"></i>
-                                    </a>
-                                </Link>
-                            )}
-
-                            <a href="#" className="page-numbers current">
-                                {page}
-                            </a>
-
-                            {page >= totalPages + 1 ? null : (
-                                <Link href={`/shop/${page + 1}`}>
-                                    <a className="next page-numbers">
-                                        <i className="flaticon-right-arrow"></i>
-                                    </a>
-                                </Link>
-                            )}
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>

@@ -15,7 +15,7 @@ export default function OrderPlaced() {
                         out some more products?
                         <br />
                         <br />
-                        <Link href="/shop">
+                        <Link href="/shop/1">
                             <a className="default-btn">Go to shop</a>
                         </Link>
                     </p>

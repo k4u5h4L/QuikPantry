@@ -153,7 +153,7 @@ export default function CartItems() {
                             <div className="cart-buttons">
                                 <div className="row align-items-center">
                                     <div className="col-lg-7 col-sm-7 col-md-7">
-                                        <Link href="/shop">
+                                        <Link href="/shop/1">
                                             <a className="default-btn">
                                                 Back to Shop
                                             </a>

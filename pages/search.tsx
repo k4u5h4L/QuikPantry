@@ -9,7 +9,7 @@ const Navbar = dynamic(() => import("@/components/Home/Navbar/Navbar"), {
 });
 // import Sidebar from "@/components/Home/Sidebar/Sidebar";
 import Banner from "@/components/Shop/Banner/Banner";
-import Products from "@/components/Shop/Products/Products/Products";
+import Products from "@/components/Shop/Products/SearchProducts/SearchProducts";
 import Footer from "@/components/Home/Footer/Footer";
 import GoToTop from "@/components/GoToTop";
 import { ProductType } from "@/types/index";
