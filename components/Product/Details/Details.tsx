@@ -48,16 +48,24 @@ export default function Details({ product, relatedProducts }) {
                                     </div>
                                     <div className="product-review">
                                         <div className="rating">
-                                            {[...Array(product.rating)].map(
-                                                (
-                                                    rating: number,
-                                                    index: number
-                                                ) => (
-                                                    <i
-                                                        key={index}
-                                                        className="bx bxs-star"
-                                                    ></i>
+                                            {product.reviews.length != 0 ? (
+                                                [
+                                                    ...Array(product.rating),
+                                                ].map(
+                                                    (
+                                                        rating: number,
+                                                        index: number
+                                                    ) => (
+                                                        <i
+                                                            key={index}
+                                                            className="bx bxs-star"
+                                                        ></i>
+                                                    )
                                                 )
+                                            ) : (
+                                                <p>
+                                                    <b>(No reviews yet)</b>
+                                                </p>
                                             )}
                                         </div>
                                         {/* <a href="#" className="rating-count">
