@@ -7,11 +7,13 @@ export default function WhyUs() {
                 <div className="why-choose-item">
                     <div className="content">
                         <span>Why Choose Us</span>
-                        <h3>We are Ensure of These Types</h3>
+                        <h3>
+                            We ensure our products comply by these standards
+                        </h3>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua quis ipsum suspendisse
+                            Our experts have checked and audited the products
+                            and the sellers to ensure the quality of our
+                            products are top notch.
                         </p>
                     </div>
 
@@ -20,11 +22,7 @@ export default function WhyUs() {
                             <i className="flaticon-leaf"></i>
                         </div>
                         <h4>Organic</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua quis ipsum suspendisse
-                        </p>
+                        <p>Fresh from farm to plate.</p>
                     </div>
 
                     <div className="inner-content">
@@ -33,9 +31,9 @@ export default function WhyUs() {
                         </div>
                         <h4>Fast and Easy</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua quis ipsum suspendisse
+                            Products are delivered safely, and our delivery
+                            executives maintain safe distances to ensure your
+                            safety.
                         </p>
                     </div>
 
@@ -45,9 +43,9 @@ export default function WhyUs() {
                         </div>
                         <h4>High Quality</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua quis ipsum suspendisse
+                            Organic and fresh, the products have made our
+                            customers happy, and will continue to strive to be
+                            of the same quality will satisfied buyers!
                         </p>
                     </div>
                 </div>
