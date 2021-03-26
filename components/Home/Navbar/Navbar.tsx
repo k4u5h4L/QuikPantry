@@ -523,6 +523,18 @@ export default function Navbar() {
                                     </form>
                                 </div>
 
+                                {localStorage.getItem("isInstalled") ==
+                                "true" ? null : (
+                                    <div className="option-item">
+                                        <a
+                                            className="default-btn add-button"
+                                            style={{ cursor: "pointer" }}
+                                        >
+                                            Install as PWA
+                                        </a>
+                                    </div>
+                                )}
+
                                 {/* <div className="option-item">
                                     <div className="burger-menu">
                                         <span></span>
