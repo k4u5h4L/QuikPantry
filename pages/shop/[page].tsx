@@ -16,11 +16,10 @@ import dbConnect from "@/utils/dbConnect";
 import Product from "@/models/Product";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/pages`);
+    await dbConnect();
 
-    const data = await res.json();
+    const totalPages: number = await Product.countDocuments({});
 
-    const { totalPages } = data;
     let pages: any[] = [];
     let i: number;
 
@@ -38,7 +37,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
     await dbConnect();
 
-    const { page } = context.params;
+    const page: any = context.params.page;
 
     let pdts = await Product.find({});
 
@@ -48,12 +47,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     // console.log(pdts);
 
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/pages`);
+    const pages: number = await Product.countDocuments({});
 
-    const data = await res.json();
-
-    const { totalPages } = data;
-
+    const totalPages = parseInt((pages / 8).toFixed(0));
     return {
         props: {
             pdts: JSON.stringify(pdts),
