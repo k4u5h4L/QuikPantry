@@ -11,6 +11,9 @@ export default function Reviews({ product }) {
     const [reviews, setReviews] = useState<boolean>(false);
 
     const ifAlreadyPosted = (): boolean => {
+        if (!session) {
+            return false;
+        }
         const users: string[] = product.reviews.map(
             (review: ReviewType) => review.user
         );
@@ -83,66 +86,78 @@ export default function Reviews({ product }) {
                                                                 Write a Review
                                                             </a> */}
                                         </div>
-                                        <div className="review-comments">
-                                            {product.reviews.map(
-                                                (
-                                                    review: ReviewType,
-                                                    index: number
-                                                ) => (
-                                                    <div
-                                                        className="review-item"
-                                                        key={index}
-                                                    >
-                                                        <div className="rating">
-                                                            {[
-                                                                ...Array(
-                                                                    review.rating
-                                                                ),
-                                                            ].map(
-                                                                (
-                                                                    rating: number,
-                                                                    index: number
-                                                                ) => (
-                                                                    <i
-                                                                        key={
-                                                                            index
-                                                                        }
-                                                                        className="bx bxs-star"
-                                                                    ></i>
-                                                                )
-                                                            )}
-                                                        </div>
-                                                        <h3>{review.title}</h3>
-                                                        <span>
-                                                            <strong>
-                                                                {review.user}
-                                                            </strong>{" "}
-                                                            on
-                                                            <strong>
-                                                                {" "}
-                                                                {new Date(
-                                                                    review.date
-                                                                ).toDateString()}
-                                                            </strong>
-                                                        </span>
-                                                        <p>{review.desc}</p>
-                                                        {/* <a
+                                        {product.reviews.length != 0 ? (
+                                            <div className="review-comments">
+                                                {product.reviews.map(
+                                                    (
+                                                        review: ReviewType,
+                                                        index: number
+                                                    ) => (
+                                                        <div
+                                                            className="review-item"
+                                                            key={index}
+                                                        >
+                                                            <div className="rating">
+                                                                {[
+                                                                    ...Array(
+                                                                        review.rating
+                                                                    ),
+                                                                ].map(
+                                                                    (
+                                                                        rating: number,
+                                                                        index: number
+                                                                    ) => (
+                                                                        <i
+                                                                            key={
+                                                                                index
+                                                                            }
+                                                                            className="bx bxs-star"
+                                                                        ></i>
+                                                                    )
+                                                                )}
+                                                            </div>
+                                                            <h3>
+                                                                {review.title}
+                                                            </h3>
+                                                            <span>
+                                                                <strong>
+                                                                    {
+                                                                        review.user
+                                                                    }
+                                                                </strong>{" "}
+                                                                on
+                                                                <strong>
+                                                                    {" "}
+                                                                    {new Date(
+                                                                        review.date
+                                                                    ).toDateString()}
+                                                                </strong>
+                                                            </span>
+                                                            <p>{review.desc}</p>
+                                                            {/* <a
                                                     href="#"
                                                     className="review-report-link"
                                                 >
                                                     Report as Inappropriate
                                                 </a> */}
-                                                    </div>
-                                                )
-                                            )}
-                                        </div>
+                                                        </div>
+                                                    )
+                                                )}
+                                            </div>
+                                        ) : (
+                                            <h3>
+                                                <hr />
+                                                No reviews for this product yet
+                                            </h3>
+                                        )}
 
                                         {session && ifAlreadyPosted() ? (
                                             <ReviewForm pId={product._id} />
                                         ) : (
                                             <div className="review-form">
                                                 <hr />
-                                                {!ifAlreadyPosted() ? (
+                                                {!ifAlreadyPosted() &&
+                                                session ? (
                                                     <h3>
                                                         You seem to have already
                                                         posted a review!
