@@ -56,4 +56,13 @@ module.exports = withPWA({
 //             "images.ctfassets.net",
 //         ],
 //     },
+//     async redirects() {
+//         return [
+//             {
+//                 source: "/shop",
+//                 destination: "/shop/1",
+//                 permanent: true,
+//             },
+//         ];
+//     },
 // };

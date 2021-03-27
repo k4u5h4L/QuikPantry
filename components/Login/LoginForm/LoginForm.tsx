@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-
 import { signIn, signOut, useSession } from "next-auth/client";
+import Image from "next/image";
 
 export default function LoginForm() {
     const [session] = useSession();
+    const [loading, setLoading] = useState<boolean>(false);
 
     const [emailData, setEmailData] = useState<string>("");
 
@@ -27,10 +28,11 @@ export default function LoginForm() {
                             onSubmit={(e) => {
                                 e.preventDefault();
 
+                                setLoading(true);
+
                                 signIn("email", {
                                     email: emailData,
-                                    callbackUrl:
-                                        "http://localhost:3000/login/verify/",
+                                    callbackUrl: `${process.env.NEXTAUTH_URL}/login/verify/`,
                                     redirect: true,
                                 });
                             }}
@@ -78,6 +80,16 @@ export default function LoginForm() {
                             </div>
                         </div> */}
 
+                            {loading ? (
+                                <p className="d-flex justify-content-center">
+                                    <Image
+                                        src="/loading.gif"
+                                        width={50}
+                                        height={50}
+                                    />
+                                </p>
+                            ) : null}
+
                             <button
                                 type="submit"
                                 className="default-btn"
@@ -88,6 +100,7 @@ export default function LoginForm() {
                                     //         "/login/verify",
                                     //     redirect: true,
                                     // });
+                                    setLoading(true);
                                     signIn("email", {
                                         email: emailData,
                                         callbackUrl:
