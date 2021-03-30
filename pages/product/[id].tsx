@@ -3,9 +3,9 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import dynamic from "next/dynamic";
 
 // import Navbar from "@/components/Home/Navbar/Navbar";
-const Navbar = dynamic(() => import("@/components/Home/Navbar/Navbar"), {
-    ssr: false,
-});
+// const Navbar = dynamic(() => import("@/components/Home/Navbar/Navbar"), {
+//     ssr: false,
+// });
 // import Sidebar from "@/components/Home/Sidebar/Sidebar";
 import Banner from "@/components/Shop/Banner/Banner";
 import dbConnect from "@/utils/dbConnect";
@@ -61,7 +61,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 export default function ProductPage({ product, relatedPdts }) {
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             {/* <Sidebar /> */}
             <Banner title="Product Details" path="product" />
             <Details

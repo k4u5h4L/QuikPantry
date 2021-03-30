@@ -1,14 +1,29 @@
 import React, { useState } from "react";
 
 import Head from "next/head";
+import dynamic from "next/dynamic";
 import { Provider } from "next-auth/client";
 import type { AppProps /*, AppContext */ } from "next/app";
 
 import NextNprogress from "nextjs-progressbar";
 import { CartContext } from "@/utils/CartContext";
 
+const Navbar = dynamic(() => import("@/components/Home/Navbar/Navbar"), {
+    ssr: false,
+});
+
+// const AddToHomeScreen: any = dynamic(() => import("react-add-to-homescreen"), {
+//     ssr: false,
+// });
+
 function MyApp({ Component, pageProps }: AppProps) {
     const [value, setValue] = useState<number>(0);
+
+    const handleAddToHomescreenClick = () => {
+        alert(`
+            1. Open Share menu
+            2. Tap on "Add to Home Screen" button`);
+    };
 
     return (
         <Provider session={pageProps.session}>
@@ -178,7 +193,13 @@ function MyApp({ Component, pageProps }: AppProps) {
                     stopDelayMs={200}
                     height={3}
                 />
+                <Navbar />
                 <Component {...pageProps} />
+                {/* <AddToHomeScreen
+                    onAddToHomescreenClick={handleAddToHomescreenClick}
+                    title="Add QuikPantry to home screen"
+                    src="/icon.png"
+                /> */}
             </CartContext.Provider>
         </Provider>
     );

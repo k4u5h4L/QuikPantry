@@ -4,9 +4,9 @@ import { GetServerSideProps } from "next";
 
 // import Navbar from "@/components/Home/Navbar/Navbar";
 import dynamic from "next/dynamic";
-const Navbar = dynamic(() => import("@/components/Home/Navbar/Navbar"), {
-    ssr: false,
-});
+// const Navbar = dynamic(() => import("@/components/Home/Navbar/Navbar"), {
+//     ssr: false,
+// });
 // import Sidebar from "@/components/Home/Sidebar/Sidebar";
 import Banner from "@/components/Shop/Banner/Banner";
 import Products from "@/components/Shop/Products/SearchProducts/SearchProducts";
@@ -40,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 export default function Search({ pdts }) {
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             {/* <Sidebar /> */}
             <Banner title="Search products" path="search" />
             <Products products={JSON.parse(pdts)} />
