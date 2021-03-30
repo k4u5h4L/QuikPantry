@@ -435,7 +435,7 @@ export default function Navbar() {
                                     </div>
                                 </div> */}
 
-                                {localStorage.getItem("isInstalled") ==
+                                {/* {localStorage.getItem("isInstalled") ==
                                 "true" ? null : (
                                     <div className="option-item">
                                         <a
@@ -445,7 +445,7 @@ export default function Navbar() {
                                             Install as PWA
                                         </a>
                                     </div>
-                                )}
+                                )} */}
 
                                 {/* <div className="option-item">
                                     <a
@@ -523,7 +523,7 @@ export default function Navbar() {
                                     </form>
                                 </div>
 
-                                {localStorage.getItem("isInstalled") ==
+                                {/* {localStorage.getItem("isInstalled") ==
                                 "true" ? null : (
                                     <div className="option-item">
                                         <a
@@ -533,7 +533,7 @@ export default function Navbar() {
                                             Install as PWA
                                         </a>
                                     </div>
-                                )}
+                                )} */}
 
                                 {/* <div className="option-item">
                                     <div className="burger-menu">
