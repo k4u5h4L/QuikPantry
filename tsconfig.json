@@ -21,6 +21,7 @@
             "@/utils/*": ["utils/*"],
             "@/models/*": ["models/*"],
             "@/helpers/*": ["helpers/*"],
+            "@/graphql/*": ["graphql/*"],
             "@/node_modules/*": ["node_modules/*"]
         }
     },
