@@ -22,7 +22,7 @@ const server = new ApolloServer({
     playground: {
         settings: {
             //   "editor.theme": "light",
-            "request.credentials": "include",
+            "request.credentials": "same-origin",
         },
     },
 });
