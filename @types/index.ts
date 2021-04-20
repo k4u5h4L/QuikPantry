@@ -40,3 +40,13 @@ export interface AddressType {
     town: string;
     zip: number;
 }
+
+interface PdtsBought {
+    productName: string;
+    rating: number;
+    tags: [string];
+}
+export interface OrderType {
+    email: string;
+    productsBought: [PdtsBought];
+}

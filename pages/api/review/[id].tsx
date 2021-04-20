@@ -37,9 +37,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 { ...pdt }
             );
 
-            console.log(updatedPdt);
+            // console.log(updatedPdt);
 
-            res.status(200).json(updatedPdt);
+            res.status(200).json({ message: "Review saved" });
         } catch (err: any) {
             res.status(500).json({ message: "POST data is incorrect" });
         }

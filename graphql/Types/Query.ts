@@ -33,9 +33,18 @@ export const Query = queryType({
 
                 // const or = await new Order({
                 //     email: "kaushal.v.bhat@gmail.com",
-                //     productName: "Pineapples",
-                //     rating: "3",
-                //     tags: ["pineapple", "fruit", "sweet"],
+                //     productsBought: [
+                //         {
+                //             productName: "Pineapples",
+                //             rating: "3",
+                //             tags: ["pineapple", "fruit", "sweet"],
+                //         },
+                //         {
+                //             productName: "Jellybeans",
+                //             rating: "5",
+                //             tags: ["beans", "jelly", "snack"],
+                //         },
+                //     ],
                 // });
 
                 // or.save();

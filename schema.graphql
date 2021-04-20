@@ -17,6 +17,10 @@ type Address {
 
 type Order {
   email: String
+  productsBought: [ProductsBought]
+}
+
+type ProductsBought {
   productName: String
   rating: Int
   tags: [String]

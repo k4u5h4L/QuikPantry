@@ -42,6 +42,9 @@ export interface NexusGenObjects {
   }
   Order: { // root type
     email?: string | null; // String
+    productsBought?: Array<NexusGenRootTypes['ProductsBought'] | null> | null; // [ProductsBought]
+  }
+  ProductsBought: { // root type
     productName?: string | null; // String
     rating?: number | null; // Int
     tags?: Array<string | null> | null; // [String]
@@ -74,6 +77,9 @@ export interface NexusGenFieldTypes {
   }
   Order: { // field return type
     email: string | null; // String
+    productsBought: Array<NexusGenRootTypes['ProductsBought'] | null> | null; // [ProductsBought]
+  }
+  ProductsBought: { // field return type
     productName: string | null; // String
     rating: number | null; // Int
     tags: Array<string | null> | null; // [String]
@@ -99,6 +105,9 @@ export interface NexusGenFieldTypeNames {
   }
   Order: { // field return type name
     email: 'String'
+    productsBought: 'ProductsBought'
+  }
+  ProductsBought: { // field return type name
     productName: 'String'
     rating: 'Int'
     tags: 'String'

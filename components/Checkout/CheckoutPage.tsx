@@ -59,13 +59,34 @@ export default function CheckoutPage({ ordered, setOrdered }) {
         // console.log("useEffect called for data");
     }, [data]);
 
+    const saveOrder = async () => {
+        const res = await fetch(`/api/orders/save`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                items: cartItems,
+                email: session.user.email,
+                address: address,
+            }),
+        });
+
+        const data = await res.json();
+    };
+
     const placeOrder = () => {
-        setValue(0);
-        setCartItems([]);
-        localStorage.setItem("cart", "[]");
-        // router.push(`/`);
-        // alert("Order placed!");
-        setOrdered(true);
+        if (session) {
+            saveOrder();
+        }
+
+        // setValue(0);
+        // setCartItems([]);
+        // localStorage.setItem("cart", "[]");
+        // // router.push(`/`);
+        // // alert("Order placed!");
+        // setOrdered(true);
+        alert("submitted");
     };
 
     useEffect(() => {
@@ -105,7 +126,8 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                             <div className="user-actions">
                                 <i className="bx bx-link-external"></i>
                                 <span>
-                                    Returning customer?{" "}
+                                    Returning customer? Our sevices work better
+                                    when you&apos;re logged in!{" "}
                                     <Link href="/login">
                                         <a>Click here to login</a>
                                     </Link>

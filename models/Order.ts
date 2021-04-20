@@ -6,15 +6,16 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    product: {
-        productName: {
-            type: String,
-            required: true,
-        },
-        rating: {
-            type: Number,
-        },
-        tags: { type: Array },
+    // productName: {
+    //     type: String,
+    //     required: true,
+    // },
+    // rating: {
+    //     type: Number,
+    // },
+    // tags: { type: Array },
+    productsBought: {
+        type: Array,
     },
 });
 
