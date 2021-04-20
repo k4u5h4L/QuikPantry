@@ -1,16 +1,61 @@
 import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
+import { useQuery, gql } from "@apollo/client";
+import { useSession } from "next-auth/client";
 // import { useRouter } from "next/router";
 
-import { ProductType } from "@/types/index";
+import { AddressType, ProductType } from "@/types/index";
 import { CartContext } from "@/utils/CartContext";
 
 export default function CheckoutPage({ ordered, setOrdered }) {
     const [cartItems, setCartItems] = useState<ProductType[]>([]);
+    const [session] = useSession();
 
     const { value, setValue } = useContext(CartContext);
 
+    const addressPlaceholder: AddressType = {
+        country: "...",
+        fname: "...",
+        lname: "...",
+        address: "...",
+        town: "...",
+        state: "...",
+        zip: 0,
+        email: "...",
+        phone: 0,
+        notes: "...",
+    };
+
     // const router = useRouter();
+
+    const AddressQuery = gql`
+        query {
+            address(email: "${session ? session.user.email : null}") {
+                country
+                fname
+                lname
+                address
+                town
+                state
+                zip
+                email
+                phone
+                notes
+            }
+        }
+    `;
+
+    const { data, error, loading } = useQuery(AddressQuery);
+
+    const [address, setAddress] = useState<AddressType>(addressPlaceholder);
+
+    useEffect(() => {
+        if (data) {
+            setAddress(data.address);
+        }
+
+        console.log("useEffect called for data");
+    }, [data]);
 
     // console.log(router);
     // console.log(window.history);
@@ -55,19 +100,22 @@ export default function CheckoutPage({ ordered, setOrdered }) {
     return (
         <section className="checkout-area ptb-100">
             <div className="container">
-                <div className="row">
-                    <div className="col-lg-12 col-md-12">
-                        <div className="user-actions">
-                            <i className="bx bx-link-external"></i>
-                            <span>
-                                Returning customer?{" "}
-                                <Link href="/login">
-                                    <a>Click here to login</a>
-                                </Link>
-                            </span>
+                {!session ? (
+                    <div className="row">
+                        <div className="col-lg-12 col-md-12">
+                            <div className="user-actions">
+                                <i className="bx bx-link-external"></i>
+                                <span>
+                                    Returning customer?{" "}
+                                    <Link href="/login">
+                                        <a>Click here to login</a>
+                                    </Link>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                ) : null}
+
                 <form>
                     <div className="row">
                         <div className="col-lg-6 col-md-12">
@@ -93,6 +141,18 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                     <input
                                                         type="text"
                                                         className="form-control"
+                                                        value={
+                                                            data
+                                                                ? address.country
+                                                                : ""
+                                                        }
+                                                        onChange={(e) => {
+                                                            console.log(
+                                                                e.target.value
+                                                            );
+
+                                                            // setAddress
+                                                        }}
                                                     />
                                                 </div>
                                             </div>
@@ -109,6 +169,9 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                value={
+                                                    data ? address.fname : ""
+                                                }
                                             />
                                         </div>
                                     </div>
@@ -123,10 +186,13 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                value={
+                                                    data ? address.lname : ""
+                                                }
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-lg-12 col-md-12">
+                                    {/* <div className="col-lg-12 col-md-12">
                                         <div className="form-group">
                                             <label>Company Name</label>
                                             <input
@@ -134,7 +200,7 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 className="form-control"
                                             />
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className="col-lg-12 col-md-6">
                                         <div className="form-group">
                                             <label>
@@ -146,6 +212,9 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                value={
+                                                    data ? address.address : ""
+                                                }
                                             />
                                         </div>
                                     </div>
@@ -160,6 +229,7 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                value={data ? address.town : ""}
                                             />
                                         </div>
                                     </div>
@@ -174,6 +244,9 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                value={
+                                                    data ? address.state : ""
+                                                }
                                             />
                                         </div>
                                     </div>
@@ -186,12 +259,13 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 </span>
                                             </label>
                                             <input
-                                                type="text"
+                                                type="number"
                                                 className="form-control"
+                                                value={data ? address.zip : ""}
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-lg-6 col-md-6">
+                                    {/* <div className="col-lg-6 col-md-6">
                                         <div className="form-group">
                                             <label>
                                                 Email Address
@@ -204,7 +278,7 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 className="form-control"
                                             />
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className="col-lg-6 col-md-6">
                                         <div className="form-group">
                                             <label>
@@ -214,8 +288,11 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 </span>
                                             </label>
                                             <input
-                                                type="text"
+                                                type="tel"
                                                 className="form-control"
+                                                value={
+                                                    data ? address.phone : ""
+                                                }
                                             />
                                         </div>
                                     </div>

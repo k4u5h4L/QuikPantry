@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-// import Navbar from "@/components/Home/Navbar/Navbar";
 import dynamic from "next/dynamic";
 // const Navbar = dynamic(() => import("@/components/Home/Navbar/Navbar"), {
 //     ssr: false,
@@ -20,6 +19,7 @@ import OrderPlaced from "@/components/OrderPlaced/OrderPlaced";
 
 export default function Checkout() {
     const [ordered, setOrdered] = useState<boolean>(false);
+
     return (
         <>
             {/* <Navbar /> */}
