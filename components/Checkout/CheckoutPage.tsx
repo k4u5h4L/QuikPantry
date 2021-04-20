@@ -57,9 +57,6 @@ export default function CheckoutPage({ ordered, setOrdered }) {
         console.log("useEffect called for data");
     }, [data]);
 
-    // console.log(router);
-    // console.log(window.history);
-
     const placeOrder = () => {
         setValue(0);
         setCartItems([]);
@@ -142,7 +139,7 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                         type="text"
                                                         className="form-control"
                                                         value={
-                                                            data
+                                                            address
                                                                 ? address.country
                                                                 : ""
                                                         }
@@ -170,7 +167,7 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 type="text"
                                                 className="form-control"
                                                 value={
-                                                    data ? address.fname : ""
+                                                    address ? address.fname : ""
                                                 }
                                             />
                                         </div>
@@ -187,7 +184,7 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 type="text"
                                                 className="form-control"
                                                 value={
-                                                    data ? address.lname : ""
+                                                    address ? address.lname : ""
                                                 }
                                             />
                                         </div>
@@ -213,7 +210,9 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 type="text"
                                                 className="form-control"
                                                 value={
-                                                    data ? address.address : ""
+                                                    address
+                                                        ? address.address
+                                                        : ""
                                                 }
                                             />
                                         </div>
@@ -229,7 +228,9 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                value={data ? address.town : ""}
+                                                value={
+                                                    address ? address.town : ""
+                                                }
                                             />
                                         </div>
                                     </div>
@@ -245,7 +246,7 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 type="text"
                                                 className="form-control"
                                                 value={
-                                                    data ? address.state : ""
+                                                    address ? address.state : ""
                                                 }
                                             />
                                         </div>
@@ -261,7 +262,9 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                             <input
                                                 type="number"
                                                 className="form-control"
-                                                value={data ? address.zip : ""}
+                                                value={
+                                                    address ? address.zip : ""
+                                                }
                                             />
                                         </div>
                                     </div>
@@ -291,7 +294,7 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 type="tel"
                                                 className="form-control"
                                                 value={
-                                                    data ? address.phone : ""
+                                                    address ? address.phone : ""
                                                 }
                                             />
                                         </div>
