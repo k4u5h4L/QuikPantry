@@ -15,7 +15,19 @@ type Address {
   zip: Int
 }
 
+type Order {
+  email: String
+  productName: String
+  rating: Int
+  tags: [String]
+}
+
 type Query {
   """Find an address by its corresponding email of the user"""
   AddressByEmail(email: ID): Address
+
+  """
+  All orders done by a user of a particular email for recommendation system
+  """
+  OrderByEmail(email: ID): Order
 }

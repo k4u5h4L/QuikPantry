@@ -47,7 +47,7 @@ export default function CheckoutPage({ ordered, setOrdered }) {
 
     const { data, error, loading } = useQuery(AddressQuery);
 
-    console.log(data);
+    // console.log(data);
 
     const [address, setAddress] = useState<AddressType>(addressPlaceholder);
 
@@ -56,7 +56,7 @@ export default function CheckoutPage({ ordered, setOrdered }) {
             setAddress(data.AddressByEmail);
         }
 
-        console.log("useEffect called for data");
+        // console.log("useEffect called for data");
     }, [data]);
 
     const placeOrder = () => {

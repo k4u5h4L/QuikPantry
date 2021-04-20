@@ -40,6 +40,12 @@ export interface NexusGenObjects {
     town?: string | null; // String
     zip?: number | null; // Int
   }
+  Order: { // root type
+    email?: string | null; // String
+    productName?: string | null; // String
+    rating?: number | null; // Int
+    tags?: Array<string | null> | null; // [String]
+  }
   Query: {};
 }
 
@@ -66,8 +72,15 @@ export interface NexusGenFieldTypes {
     town: string | null; // String
     zip: number | null; // Int
   }
+  Order: { // field return type
+    email: string | null; // String
+    productName: string | null; // String
+    rating: number | null; // Int
+    tags: Array<string | null> | null; // [String]
+  }
   Query: { // field return type
     AddressByEmail: NexusGenRootTypes['Address'] | null; // Address
+    OrderByEmail: NexusGenRootTypes['Order'] | null; // Order
   }
 }
 
@@ -84,14 +97,24 @@ export interface NexusGenFieldTypeNames {
     town: 'String'
     zip: 'Int'
   }
+  Order: { // field return type name
+    email: 'String'
+    productName: 'String'
+    rating: 'Int'
+    tags: 'String'
+  }
   Query: { // field return type name
     AddressByEmail: 'Address'
+    OrderByEmail: 'Order'
   }
 }
 
 export interface NexusGenArgTypes {
   Query: {
     AddressByEmail: { // args
+      email?: string | null; // ID
+    }
+    OrderByEmail: { // args
       email?: string | null; // ID
     }
   }
