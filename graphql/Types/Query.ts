@@ -1,4 +1,5 @@
 import { queryType, idArg } from "nexus";
+import { AuthenticationError } from "apollo-server-micro";
 
 import { Address as ContactAddress, Order as UserOrder } from "./index";
 import dbConnect from "@/utils/dbConnect";
@@ -12,12 +13,18 @@ export const Query = queryType({
             description:
                 "Find an address by its corresponding email of the user",
             args: { email: idArg() },
-            resolve: async (_root, { email }: { email: string }, _ctx) => {
+            resolve: async (_root, { email }: { email: string }, ctx) => {
                 await dbConnect();
 
-                const address = await Address.findOne({ email: email });
+                if (ctx.session) {
+                    if (ctx.session.user.email == email) {
+                        const address = await Address.findOne({ email: email });
 
-                return address;
+                        return address;
+                    }
+                } else {
+                    throw new AuthenticationError("User is not logged in.");
+                }
             },
         });
 
@@ -26,10 +33,18 @@ export const Query = queryType({
             description:
                 "All orders done by a user of a particular email for recommendation system",
             args: { email: idArg() },
-            resolve: async (_root, { email }: { email: string }, _ctx) => {
+            resolve: async (_root, { email }: { email: string }, ctx) => {
                 await dbConnect();
 
-                const order = await Order.findOne({ email: email });
+                if (ctx.session) {
+                    if (ctx.session.user.email == email) {
+                        const address = await Order.findOne({ email: email });
+
+                        return address;
+                    }
+                } else {
+                    throw new AuthenticationError("User is not logged in.");
+                }
 
                 // const or = await new Order({
                 //     email: "kaushal.v.bhat@gmail.com",
@@ -48,8 +63,6 @@ export const Query = queryType({
                 // });
 
                 // or.save();
-
-                return order;
             },
         });
     },
