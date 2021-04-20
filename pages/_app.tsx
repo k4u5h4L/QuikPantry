@@ -5,6 +5,9 @@ import dynamic from "next/dynamic";
 import { Provider } from "next-auth/client";
 import type { AppProps /*, AppContext */ } from "next/app";
 
+import { ApolloProvider } from "@apollo/client";
+import { useApollo } from "@/graphql/apolloClient";
+
 import NextNprogress from "nextjs-progressbar";
 import { CartContext } from "@/utils/CartContext";
 
@@ -18,6 +21,7 @@ const Navbar = dynamic(() => import("@/components/Home/Navbar/Navbar"), {
 
 function MyApp({ Component, pageProps }: AppProps) {
     const [value, setValue] = useState<number>(0);
+    const client = useApollo();
 
     const handleAddToHomescreenClick = () => {
         alert(`
@@ -194,7 +198,9 @@ function MyApp({ Component, pageProps }: AppProps) {
                     height={3}
                 />
                 <Navbar />
-                <Component {...pageProps} />
+                <ApolloProvider client={client}>
+                    <Component {...pageProps} />
+                </ApolloProvider>
                 {/* <AddToHomeScreen
                     onAddToHomescreenClick={handleAddToHomescreenClick}
                     title="Add QuikPantry to home screen"
