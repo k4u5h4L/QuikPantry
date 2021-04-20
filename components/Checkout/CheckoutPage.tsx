@@ -14,23 +14,23 @@ export default function CheckoutPage({ ordered, setOrdered }) {
     const { value, setValue } = useContext(CartContext);
 
     const addressPlaceholder: AddressType = {
-        country: "...",
-        fname: "...",
-        lname: "...",
-        address: "...",
-        town: "...",
-        state: "...",
+        country: "",
+        fname: "",
+        lname: "",
+        address: "",
+        town: "",
+        state: "",
         zip: 0,
-        email: "...",
+        email: "",
         phone: 0,
-        notes: "...",
+        notes: "",
     };
 
     // const router = useRouter();
 
     const AddressQuery = gql`
         query {
-            address(email: "${session ? session.user.email : null}") {
+            AddressByEmail (email: "${session ? session.user.email : null}") {
                 country
                 fname
                 lname
@@ -47,11 +47,13 @@ export default function CheckoutPage({ ordered, setOrdered }) {
 
     const { data, error, loading } = useQuery(AddressQuery);
 
+    console.log(data);
+
     const [address, setAddress] = useState<AddressType>(addressPlaceholder);
 
     useEffect(() => {
         if (data) {
-            setAddress(data.address);
+            setAddress(data.AddressByEmail);
         }
 
         console.log("useEffect called for data");
@@ -144,11 +146,12 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                                 : ""
                                                         }
                                                         onChange={(e) => {
-                                                            console.log(
-                                                                e.target.value
-                                                            );
-
-                                                            // setAddress
+                                                            setAddress({
+                                                                ...address,
+                                                                country:
+                                                                    e.target
+                                                                        .value,
+                                                            });
                                                         }}
                                                     />
                                                 </div>
@@ -169,6 +172,12 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 value={
                                                     address ? address.fname : ""
                                                 }
+                                                onChange={(e) => {
+                                                    setAddress({
+                                                        ...address,
+                                                        fname: e.target.value,
+                                                    });
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -186,6 +195,12 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 value={
                                                     address ? address.lname : ""
                                                 }
+                                                onChange={(e) => {
+                                                    setAddress({
+                                                        ...address,
+                                                        lname: e.target.value,
+                                                    });
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -214,6 +229,12 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                         ? address.address
                                                         : ""
                                                 }
+                                                onChange={(e) => {
+                                                    setAddress({
+                                                        ...address,
+                                                        address: e.target.value,
+                                                    });
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -231,6 +252,12 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 value={
                                                     address ? address.town : ""
                                                 }
+                                                onChange={(e) => {
+                                                    setAddress({
+                                                        ...address,
+                                                        town: e.target.value,
+                                                    });
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -248,6 +275,12 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 value={
                                                     address ? address.state : ""
                                                 }
+                                                onChange={(e) => {
+                                                    setAddress({
+                                                        ...address,
+                                                        state: e.target.value,
+                                                    });
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -265,6 +298,14 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 value={
                                                     address ? address.zip : ""
                                                 }
+                                                onChange={(e) => {
+                                                    setAddress({
+                                                        ...address,
+                                                        zip: Number(
+                                                            e.target.value
+                                                        ),
+                                                    });
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -296,6 +337,14 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 value={
                                                     address ? address.phone : ""
                                                 }
+                                                onChange={(e) => {
+                                                    setAddress({
+                                                        ...address,
+                                                        phone: Number(
+                                                            e.target.value
+                                                        ),
+                                                    });
+                                                }}
                                             />
                                         </div>
                                     </div>

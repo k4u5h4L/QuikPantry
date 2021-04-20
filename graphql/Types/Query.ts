@@ -1,11 +1,12 @@
 import { queryType, idArg } from "nexus";
+
 import { Address as ContactAddress } from "./index";
 import dbConnect from "@/utils/dbConnect";
 import Address from "@/models/Address";
 
 export const Query = queryType({
     definition(t) {
-        t.field("address", {
+        t.field("AddressByEmail", {
             type: ContactAddress,
             description:
                 "Find an address by its corresponding email of the user",

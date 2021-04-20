@@ -17,5 +17,5 @@ type Address {
 
 type Query {
   """Find an address by its corresponding email of the user"""
-  address(email: ID): Address
+  AddressByEmail(email: ID): Address
 }

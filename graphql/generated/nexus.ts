@@ -67,7 +67,7 @@ export interface NexusGenFieldTypes {
     zip: number | null; // Int
   }
   Query: { // field return type
-    address: NexusGenRootTypes['Address'] | null; // Address
+    AddressByEmail: NexusGenRootTypes['Address'] | null; // Address
   }
 }
 
@@ -85,13 +85,13 @@ export interface NexusGenFieldTypeNames {
     zip: 'Int'
   }
   Query: { // field return type name
-    address: 'Address'
+    AddressByEmail: 'Address'
   }
 }
 
 export interface NexusGenArgTypes {
   Query: {
-    address: { // args
+    AddressByEmail: { // args
       email?: string | null; // ID
     }
   }
