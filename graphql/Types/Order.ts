@@ -5,6 +5,7 @@ const ProductsBought = objectType({
     definition(t) {
         t.string("id");
         t.string("productName");
+        t.string("imageUrl");
         t.int("rating");
         t.list.string("tags");
     },

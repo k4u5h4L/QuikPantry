@@ -19,6 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                     productName: item.name,
                     rating: item.rating,
                     tags: item.tags,
+                    imageUrl: item.imageUrl,
                     id: item._id,
                 })
             );

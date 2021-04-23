@@ -41,11 +41,13 @@ export interface AddressType {
     zip: number;
 }
 
-interface PdtsBought {
-    [key: string]: any;
-    productName: string;
-    rating: number;
-    tags: [string];
+export interface PdtsBought {
+    // [key: string]: any;
+    id?: string;
+    productName?: string;
+    rating?: number;
+    tags?: [string];
+    imageUrl?: string;
 }
 export interface OrderType {
     email: string;

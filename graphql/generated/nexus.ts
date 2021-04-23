@@ -45,6 +45,8 @@ export interface NexusGenObjects {
     productsBought?: Array<NexusGenRootTypes['ProductsBought'] | null> | null; // [ProductsBought]
   }
   ProductsBought: { // root type
+    id?: string | null; // String
+    imageUrl?: string | null; // String
     productName?: string | null; // String
     rating?: number | null; // Int
     tags?: Array<string | null> | null; // [String]
@@ -80,6 +82,8 @@ export interface NexusGenFieldTypes {
     productsBought: Array<NexusGenRootTypes['ProductsBought'] | null> | null; // [ProductsBought]
   }
   ProductsBought: { // field return type
+    id: string | null; // String
+    imageUrl: string | null; // String
     productName: string | null; // String
     rating: number | null; // Int
     tags: Array<string | null> | null; // [String]
@@ -108,6 +112,8 @@ export interface NexusGenFieldTypeNames {
     productsBought: 'ProductsBought'
   }
   ProductsBought: { // field return type name
+    id: 'String'
+    imageUrl: 'String'
     productName: 'String'
     rating: 'Int'
     tags: 'String'

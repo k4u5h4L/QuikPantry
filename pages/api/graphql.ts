@@ -56,5 +56,4 @@ SE stuff in GraphQL:
 
 -  Majorly falls under design. Specifically design of APIs.
 
--  
 */

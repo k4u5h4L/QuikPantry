@@ -47,6 +47,10 @@ export default function CheckoutPage({ ordered, setOrdered }) {
 
     const { data, error, loading } = useQuery(AddressQuery);
 
+    if (loading) {
+        <h2>Loading...</h2>;
+    }
+
     // console.log(data);
 
     const [address, setAddress] = useState<AddressType>(addressPlaceholder);
@@ -87,7 +91,7 @@ export default function CheckoutPage({ ordered, setOrdered }) {
 
         // router.push(`/`);
         // alert("Order placed!");
-        alert("submitted");
+        // alert("submitted");
     };
 
     useEffect(() => {

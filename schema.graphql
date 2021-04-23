@@ -21,6 +21,8 @@ type Order {
 }
 
 type ProductsBought {
+  id: String
+  imageUrl: String
   productName: String
   rating: Int
   tags: [String]
