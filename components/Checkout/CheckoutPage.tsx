@@ -80,10 +80,10 @@ export default function CheckoutPage({ ordered, setOrdered }) {
             saveOrder();
         }
 
-        // setValue(0);
-        // setCartItems([]);
-        // localStorage.setItem("cart", "[]");
-        // setOrdered(true);
+        setValue(0);
+        setCartItems([]);
+        localStorage.setItem("cart", "[]");
+        setOrdered(true);
 
         // router.push(`/`);
         // alert("Order placed!");
