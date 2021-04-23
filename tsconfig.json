@@ -21,9 +21,17 @@
             "@/utils/*": ["utils/*"],
             "@/models/*": ["models/*"],
             "@/helpers/*": ["helpers/*"],
+            "@/graphql/*": ["graphql/*"],
             "@/node_modules/*": ["node_modules/*"]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_document.tsx"],
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        "pages/_document.tsx",
+        "**/*.js",
+        "**/*.jsx"
+    ],
     "exclude": ["node_modules"]
 }

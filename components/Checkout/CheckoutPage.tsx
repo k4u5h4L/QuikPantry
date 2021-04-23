@@ -1,27 +1,97 @@
 import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
+import { useQuery, gql } from "@apollo/client";
+import { useSession } from "next-auth/client";
 // import { useRouter } from "next/router";
 
-import { ProductType } from "@/types/index";
+import { AddressType, ProductType } from "@/types/index";
 import { CartContext } from "@/utils/CartContext";
 
 export default function CheckoutPage({ ordered, setOrdered }) {
     const [cartItems, setCartItems] = useState<ProductType[]>([]);
+    const [session] = useSession();
 
     const { value, setValue } = useContext(CartContext);
 
+    const addressPlaceholder: AddressType = {
+        country: "",
+        fname: "",
+        lname: "",
+        address: "",
+        town: "",
+        state: "",
+        zip: 0,
+        email: "",
+        phone: 0,
+        notes: "",
+    };
+
     // const router = useRouter();
 
-    // console.log(router);
-    // console.log(window.history);
+    const AddressQuery = gql`
+        query {
+            AddressByEmail (email: "${session ? session.user.email : null}") {
+                country
+                fname
+                lname
+                address
+                town
+                state
+                zip
+                email
+                phone
+                notes
+            }
+        }
+    `;
+
+    const { data, error, loading } = useQuery(AddressQuery);
+
+    if (loading) {
+        <h2>Loading...</h2>;
+    }
+
+    // console.log(data);
+
+    const [address, setAddress] = useState<AddressType>(addressPlaceholder);
+
+    useEffect(() => {
+        if (data) {
+            setAddress(data.AddressByEmail);
+        }
+
+        // console.log("useEffect called for data");
+    }, [data]);
+
+    const saveOrder = async () => {
+        const res = await fetch(`/api/orders/save`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                items: cartItems,
+                email: session.user.email,
+                address: address,
+            }),
+        });
+
+        const data = await res.json();
+    };
 
     const placeOrder = () => {
+        if (session) {
+            saveOrder();
+        }
+
         setValue(0);
         setCartItems([]);
         localStorage.setItem("cart", "[]");
+        setOrdered(true);
+
         // router.push(`/`);
         // alert("Order placed!");
-        setOrdered(true);
+        // alert("submitted");
     };
 
     useEffect(() => {
@@ -55,19 +125,23 @@ export default function CheckoutPage({ ordered, setOrdered }) {
     return (
         <section className="checkout-area ptb-100">
             <div className="container">
-                <div className="row">
-                    <div className="col-lg-12 col-md-12">
-                        <div className="user-actions">
-                            <i className="bx bx-link-external"></i>
-                            <span>
-                                Returning customer?{" "}
-                                <Link href="/login">
-                                    <a>Click here to login</a>
-                                </Link>
-                            </span>
+                {!session ? (
+                    <div className="row">
+                        <div className="col-lg-12 col-md-12">
+                            <div className="user-actions">
+                                <i className="bx bx-link-external"></i>
+                                <span>
+                                    Returning customer? Our sevices work better
+                                    when you&apos;re logged in!{" "}
+                                    <Link href="/login">
+                                        <a>Click here to login</a>
+                                    </Link>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                ) : null}
+
                 <form>
                     <div className="row">
                         <div className="col-lg-6 col-md-12">
@@ -93,6 +167,19 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                     <input
                                                         type="text"
                                                         className="form-control"
+                                                        value={
+                                                            address
+                                                                ? address.country
+                                                                : ""
+                                                        }
+                                                        onChange={(e) => {
+                                                            setAddress({
+                                                                ...address,
+                                                                country:
+                                                                    e.target
+                                                                        .value,
+                                                            });
+                                                        }}
                                                     />
                                                 </div>
                                             </div>
@@ -109,6 +196,15 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                value={
+                                                    address ? address.fname : ""
+                                                }
+                                                onChange={(e) => {
+                                                    setAddress({
+                                                        ...address,
+                                                        fname: e.target.value,
+                                                    });
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -123,10 +219,19 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                value={
+                                                    address ? address.lname : ""
+                                                }
+                                                onChange={(e) => {
+                                                    setAddress({
+                                                        ...address,
+                                                        lname: e.target.value,
+                                                    });
+                                                }}
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-lg-12 col-md-12">
+                                    {/* <div className="col-lg-12 col-md-12">
                                         <div className="form-group">
                                             <label>Company Name</label>
                                             <input
@@ -134,7 +239,7 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 className="form-control"
                                             />
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className="col-lg-12 col-md-6">
                                         <div className="form-group">
                                             <label>
@@ -146,6 +251,17 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                value={
+                                                    address
+                                                        ? address.address
+                                                        : ""
+                                                }
+                                                onChange={(e) => {
+                                                    setAddress({
+                                                        ...address,
+                                                        address: e.target.value,
+                                                    });
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -160,6 +276,15 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                value={
+                                                    address ? address.town : ""
+                                                }
+                                                onChange={(e) => {
+                                                    setAddress({
+                                                        ...address,
+                                                        town: e.target.value,
+                                                    });
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -174,6 +299,15 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                value={
+                                                    address ? address.state : ""
+                                                }
+                                                onChange={(e) => {
+                                                    setAddress({
+                                                        ...address,
+                                                        state: e.target.value,
+                                                    });
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -186,12 +320,23 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 </span>
                                             </label>
                                             <input
-                                                type="text"
+                                                type="number"
                                                 className="form-control"
+                                                value={
+                                                    address ? address.zip : ""
+                                                }
+                                                onChange={(e) => {
+                                                    setAddress({
+                                                        ...address,
+                                                        zip: Number(
+                                                            e.target.value
+                                                        ),
+                                                    });
+                                                }}
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-lg-6 col-md-6">
+                                    {/* <div className="col-lg-6 col-md-6">
                                         <div className="form-group">
                                             <label>
                                                 Email Address
@@ -204,7 +349,7 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 className="form-control"
                                             />
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className="col-lg-6 col-md-6">
                                         <div className="form-group">
                                             <label>
@@ -214,8 +359,19 @@ export default function CheckoutPage({ ordered, setOrdered }) {
                                                 </span>
                                             </label>
                                             <input
-                                                type="text"
+                                                type="tel"
                                                 className="form-control"
+                                                value={
+                                                    address ? address.phone : ""
+                                                }
+                                                onChange={(e) => {
+                                                    setAddress({
+                                                        ...address,
+                                                        phone: Number(
+                                                            e.target.value
+                                                        ),
+                                                    });
+                                                }}
                                             />
                                         </div>
                                     </div>

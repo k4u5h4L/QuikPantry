@@ -27,3 +27,29 @@ export interface OrderInstruType {
     title: string;
     desc: string;
 }
+
+export interface AddressType {
+    address: string;
+    country: string;
+    email: string;
+    fname: string;
+    lname: string;
+    notes?: string;
+    phone: number;
+    state: string;
+    town: string;
+    zip: number;
+}
+
+export interface PdtsBought {
+    // [key: string]: any;
+    id?: string;
+    productName?: string;
+    rating?: number;
+    tags?: [string];
+    imageUrl?: string;
+}
+export interface OrderType {
+    email: string;
+    productsBought: [PdtsBought];
+}

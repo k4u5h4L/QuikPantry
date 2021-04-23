@@ -2,12 +2,14 @@ import React, { useEffect, useContext, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/client";
 
 import { CartContext } from "@/utils/CartContext";
 
 export default function Navbar() {
     const { value, setValue } = useContext(CartContext);
     const [search, setSearch] = useState<string>("");
+    const [session] = useSession();
 
     const router = useRouter();
 
@@ -274,6 +276,17 @@ export default function Navbar() {
                                         </a>
                                     </Link>
                                 </li>
+
+                                {session ? (
+                                    <li className="nav-item">
+                                        <Link href="/orders">
+                                            <a className="nav-link">
+                                                Orders
+                                                {/* <i className="bx bx-chevron-down"></i> */}
+                                            </a>
+                                        </Link>
+                                    </li>
+                                ) : null}
 
                                 {/* <li className="nav-item">
                                     <a href="#" className="nav-link">
