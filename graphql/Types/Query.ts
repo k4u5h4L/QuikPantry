@@ -18,9 +18,19 @@ export const Query = queryType({
 
                 if (ctx.session) {
                     if (ctx.session.user.email == email) {
-                        const address = await Address.findOne({ email: email });
+                        const address = await Address.findOne({
+                            email: email,
+                        });
+
+                        if (!address) {
+                            console.log("does not exist");
+                        }
 
                         return address;
+                    } else {
+                        throw new AuthenticationError(
+                            `I guess you are not ${email}. If you are, login first before acessing the data.`
+                        );
                     }
                 } else {
                     throw new AuthenticationError("User is not logged in.");
@@ -38,7 +48,9 @@ export const Query = queryType({
 
                 if (ctx.session) {
                     if (ctx.session.user.email == email) {
-                        const address = await Order.findOne({ email: email });
+                        const address = await Order.findOne({
+                            email: email,
+                        });
 
                         return address;
                     }

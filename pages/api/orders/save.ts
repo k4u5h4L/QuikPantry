@@ -12,17 +12,33 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
             const { items, email, address } = req.body;
 
+            // console.log(address);
+
             const pdtsBought = items.map(
                 (item: ProductType, index: number) => ({
                     productName: item.name,
                     rating: item.rating,
                     tags: item.tags,
+                    id: item._id,
                 })
             );
 
-            let order: OrderType = await Order.findOne({ email: email });
+            let order: OrderType | any = await Order.findOne({ email: email });
 
-            order.productsBought.push(...pdtsBought);
+            if (!order) {
+                order = {
+                    email: email,
+                    productsBought: [...pdtsBought],
+                };
+
+                const o = await new Order(order);
+
+                o.save();
+
+                // console.log("order was saved");
+            } else {
+                order.productsBought.push(...pdtsBought);
+            }
 
             const updateOrders = await Order.findOneAndUpdate(
                 { email: email },
@@ -35,6 +51,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 { email: email },
                 { ...address }
             );
+
+            // console.log(addr);
+
+            if (!addr) {
+                addr = { ...address, email: email };
+                const ad = await new Address(addr);
+
+                ad.save();
+
+                // console.log(`new address saved for ${email}`);
+            }
 
             res.status(200).json({ message: "Orders and address updated" });
         } catch (err: any) {

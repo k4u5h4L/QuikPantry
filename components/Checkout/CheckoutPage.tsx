@@ -80,13 +80,14 @@ export default function CheckoutPage({ ordered, setOrdered }) {
             saveOrder();
         }
 
-        setValue(0);
-        setCartItems([]);
-        localStorage.setItem("cart", "[]");
+        // setValue(0);
+        // setCartItems([]);
+        // localStorage.setItem("cart", "[]");
+        // setOrdered(true);
+
         // router.push(`/`);
         // alert("Order placed!");
-        setOrdered(true);
-        // alert("submitted");
+        alert("submitted");
     };
 
     useEffect(() => {

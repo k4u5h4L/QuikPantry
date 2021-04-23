@@ -3,6 +3,7 @@ import { objectType } from "nexus";
 const ProductsBought = objectType({
     name: "ProductsBought",
     definition(t) {
+        t.string("id");
         t.string("productName");
         t.int("rating");
         t.list.string("tags");

@@ -42,6 +42,7 @@ export interface AddressType {
 }
 
 interface PdtsBought {
+    [key: string]: any;
     productName: string;
     rating: number;
     tags: [string];
