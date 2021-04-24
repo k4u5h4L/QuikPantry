@@ -1,10 +1,16 @@
-import { queryType, idArg } from "nexus";
+import { queryType, idArg, intArg } from "nexus";
 import { AuthenticationError } from "apollo-server-micro";
 
-import { Address as ContactAddress, Order as UserOrder } from "./index";
+import {
+    Address as ContactAddress,
+    Order as UserOrder,
+    Product as StoreProducts,
+} from "./index";
 import dbConnect from "@/utils/dbConnect";
 import Address from "@/models/Address";
 import Order from "@/models/Order";
+import Product from "@/models/Product";
+import { ProductType } from "@/types/index";
 
 export const Query = queryType({
     definition(t) {
@@ -75,6 +81,33 @@ export const Query = queryType({
                 // });
 
                 // or.save();
+            },
+        });
+
+        t.list.field("Products", {
+            type: StoreProducts,
+            description: "Query for products in the database",
+            args: { first: intArg(), limit: intArg() },
+            resolve: async (
+                _root,
+                { first, limit }: { first: number; limit: number },
+                _ctx
+            ) => {
+                await dbConnect();
+
+                let products: ProductType[];
+
+                if (!first) {
+                    products = await Product.find({}).limit(Number(limit));
+                } else if (!limit) {
+                    products = await Product.find({}).skip(Number(first));
+                } else {
+                    products = await Product.find({})
+                        .skip(Number(first))
+                        .limit(Number(limit));
+                }
+
+                return products;
             },
         });
     },

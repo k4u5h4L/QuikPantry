@@ -7,11 +7,11 @@ export interface ReviewType {
     rating: number;
     desc: string;
     title: string;
-    date: Date;
+    date: string;
 }
 export interface ProductType {
     [key: string]: any;
-    // [_id: string]: any;
+    _id?: string;
     name: string;
     desc: string;
     oldPrice: number;

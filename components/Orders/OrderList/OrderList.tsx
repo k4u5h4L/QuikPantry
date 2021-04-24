@@ -34,7 +34,7 @@ export default function OrderList() {
             <section className="blog-area pt-100 pb-100">
                 <div className="container">
                     <div className="row">
-                        <h2>Loading...</h2>
+                        <h2>No orders yet...</h2>
                     </div>
                 </div>
             </section>
