@@ -23,9 +23,9 @@
 
 -   React as the UI library.
 
--   Next.js for the as the server.
+-   Next.js for the serverless functions.
 
--   MOngoDB, and Mongoose as the ODM.
+-   MongoDB, and Mongoose as the ODM.
 
 -   NextAuth as the authentication backend with passwordless logins.
 
