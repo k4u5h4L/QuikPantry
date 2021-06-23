@@ -1,7 +1,7 @@
 <h1 align="center">QuikPantry</h1></br>
 
 <p align="center">
-:shopping_cart:  A JAM stack PWA, grocery shop web app built with React, TypeScript, JWT, Next.js and MongoDB. :apple:
+:shopping_cart:  A JAM stack PWA, personalised grocery shop web app built with React, TypeScript, JWT, Next.js and MongoDB. :apple:
 </p>
 <br>
 
