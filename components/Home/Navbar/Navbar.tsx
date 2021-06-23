@@ -278,14 +278,24 @@ export default function Navbar() {
                                 </li>
 
                                 {session ? (
-                                    <li className="nav-item">
-                                        <Link href="/orders">
-                                            <a className="nav-link">
-                                                Orders
-                                                {/* <i className="bx bx-chevron-down"></i> */}
-                                            </a>
-                                        </Link>
-                                    </li>
+                                    <>
+                                        <li className="nav-item">
+                                            <Link href="/orders">
+                                                <a className="nav-link">
+                                                    Orders
+                                                    {/* <i className="bx bx-chevron-down"></i> */}
+                                                </a>
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link href="/personal">
+                                                <a className="nav-link">
+                                                    For you
+                                                    {/* <i className="bx bx-chevron-down"></i> */}
+                                                </a>
+                                            </Link>
+                                        </li>
+                                    </>
                                 ) : null}
 
                                 {/* <li className="nav-item">
