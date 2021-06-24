@@ -20,6 +20,19 @@ type Order {
   productsBought: [ProductsBought]
 }
 
+type Product {
+  _id: String
+  desc: String
+  imageUrl: String
+  name: String
+  oldPrice: Int
+  price: Int
+  rating: Int
+  reviews: [Review]
+  stock: Boolean
+  tags: [String]
+}
+
 type ProductsBought {
   id: String
   imageUrl: String
@@ -36,4 +49,15 @@ type Query {
   All orders done by a user of a particular email for recommendation system
   """
   OrderByEmail(email: ID): Order
+
+  """Query for products in the database"""
+  Products(first: Int, limit: Int): [Product]
+}
+
+type Review {
+  date: String
+  desc: String
+  rating: Int
+  title: String
+  user: String
 }

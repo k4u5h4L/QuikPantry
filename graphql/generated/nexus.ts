@@ -44,6 +44,18 @@ export interface NexusGenObjects {
     email?: string | null; // String
     productsBought?: Array<NexusGenRootTypes['ProductsBought'] | null> | null; // [ProductsBought]
   }
+  Product: { // root type
+    _id?: string | null; // String
+    desc?: string | null; // String
+    imageUrl?: string | null; // String
+    name?: string | null; // String
+    oldPrice?: number | null; // Int
+    price?: number | null; // Int
+    rating?: number | null; // Int
+    reviews?: Array<NexusGenRootTypes['Review'] | null> | null; // [Review]
+    stock?: boolean | null; // Boolean
+    tags?: Array<string | null> | null; // [String]
+  }
   ProductsBought: { // root type
     id?: string | null; // String
     imageUrl?: string | null; // String
@@ -52,6 +64,13 @@ export interface NexusGenObjects {
     tags?: Array<string | null> | null; // [String]
   }
   Query: {};
+  Review: { // root type
+    date?: string | null; // String
+    desc?: string | null; // String
+    rating?: number | null; // Int
+    title?: string | null; // String
+    user?: string | null; // String
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -81,6 +100,18 @@ export interface NexusGenFieldTypes {
     email: string | null; // String
     productsBought: Array<NexusGenRootTypes['ProductsBought'] | null> | null; // [ProductsBought]
   }
+  Product: { // field return type
+    _id: string | null; // String
+    desc: string | null; // String
+    imageUrl: string | null; // String
+    name: string | null; // String
+    oldPrice: number | null; // Int
+    price: number | null; // Int
+    rating: number | null; // Int
+    reviews: Array<NexusGenRootTypes['Review'] | null> | null; // [Review]
+    stock: boolean | null; // Boolean
+    tags: Array<string | null> | null; // [String]
+  }
   ProductsBought: { // field return type
     id: string | null; // String
     imageUrl: string | null; // String
@@ -91,6 +122,14 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     AddressByEmail: NexusGenRootTypes['Address'] | null; // Address
     OrderByEmail: NexusGenRootTypes['Order'] | null; // Order
+    Products: Array<NexusGenRootTypes['Product'] | null> | null; // [Product]
+  }
+  Review: { // field return type
+    date: string | null; // String
+    desc: string | null; // String
+    rating: number | null; // Int
+    title: string | null; // String
+    user: string | null; // String
   }
 }
 
@@ -111,6 +150,18 @@ export interface NexusGenFieldTypeNames {
     email: 'String'
     productsBought: 'ProductsBought'
   }
+  Product: { // field return type name
+    _id: 'String'
+    desc: 'String'
+    imageUrl: 'String'
+    name: 'String'
+    oldPrice: 'Int'
+    price: 'Int'
+    rating: 'Int'
+    reviews: 'Review'
+    stock: 'Boolean'
+    tags: 'String'
+  }
   ProductsBought: { // field return type name
     id: 'String'
     imageUrl: 'String'
@@ -121,6 +172,14 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     AddressByEmail: 'Address'
     OrderByEmail: 'Order'
+    Products: 'Product'
+  }
+  Review: { // field return type name
+    date: 'String'
+    desc: 'String'
+    rating: 'Int'
+    title: 'String'
+    user: 'String'
   }
 }
 
@@ -131,6 +190,10 @@ export interface NexusGenArgTypes {
     }
     OrderByEmail: { // args
       email?: string | null; // ID
+    }
+    Products: { // args
+      first?: number | null; // Int
+      limit?: number | null; // Int
     }
   }
 }

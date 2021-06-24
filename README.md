@@ -1,7 +1,7 @@
 <h1 align="center">QuikPantry</h1></br>
 
 <p align="center">
-:shopping_cart:  A JAM stack PWA, grocery shop web app built with React, TypeScript, JWT, Next.js and MongoDB. :apple:
+:shopping_cart:  A JAM stack PWA, personalised grocery shop web app built with React, TypeScript, JWT, Next.js and MongoDB. :apple:
 </p>
 <br>
 
@@ -23,9 +23,9 @@
 
 -   React as the UI library.
 
--   Next.js for the as the server.
+-   Next.js for the serverless functions.
 
--   MOngoDB, and Mongoose as the ODM.
+-   MongoDB, and Mongoose as the ODM.
 
 -   NextAuth as the authentication backend with passwordless logins.
 
