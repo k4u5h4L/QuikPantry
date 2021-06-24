@@ -22,13 +22,18 @@ export default function Personal() {
 
     if (pdts.length == 0) {
         return (
-            <section className="blog-area pt-100 pb-100">
-                <div className="container">
-                    <div className="row">
-                        <h2>No orders yet...</h2>
+            <>
+                <Banner title="For you ❤️" path="personal" />
+                <section className="blog-area pt-100 pb-100">
+                    <div className="container">
+                        <div className="row">
+                            <h2>No orders yet...</h2>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+                <Footer />
+                <GoToTop />
+            </>
         );
     }
 
